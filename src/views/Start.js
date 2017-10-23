@@ -14,6 +14,9 @@ class Start extends Component {
           <h3>Make real connections, together</h3>
           <Button width='30%'>Sign Up</Button>
           <Button width='30%'>Login</Button>
+          <div>
+           <Button primary>About</Button>
+          </div>
         </div>
       </Fullpage>
     )
