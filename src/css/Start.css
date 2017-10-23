@@ -1,0 +1,17 @@
+.logo {
+    padding-top: 30vh;
+    max-width: 500px;
+}
+
+#login {
+    width: 60%;
+    max-width: 960px;
+    margin: 0 auto;
+    background: #61c5c1;
+    color: white;
+    text-align: center;
+}
+
+h3 {
+    font-weight: 100;
+}

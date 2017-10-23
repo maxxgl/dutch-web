@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
-import '../css/Button.css'
+import '../css/Grid.css'
 
-class Button extends Component {
+export class Grid extends Component {
   render() {
     return (
-      <div></div>
+      <div className='g'>{this.props.children}</div>
     )
   }
 }
 
-export default Button
+export class Column extends Component {
+  render() {
+    return (
+      <div className={this.props.size}>{this.props.children}</div>
+    )
+  }
+}

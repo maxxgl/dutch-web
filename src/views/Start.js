@@ -1,17 +1,21 @@
 import React, { Component } from 'react'
-import '../css/Login.css'
+import '../css/Start.css'
 import logo from '../static/logotype_white.svg'
 import Fullpage from '../components/Fullpage'
 import Button from '../components/Button'
+import { Grid, Column } from '../components/Grid'
 
 class Start extends Component {
   render() {
     return (
       <Fullpage background='#61c5c1' color='white' textAlign='center'>
-        <img src={logo} alt='logo' className='logo'/>
-        <h3>Make real connections, together</h3>
-        <Button fill>Sign Up</Button>
-        <Button fill>Login</Button>
+        <div id='login'>
+          <img src={logo} alt='logo' className='logo'/>
+          <h3>Make real connections, together</h3>
+            <Button>Sign Up</Button>
+            {' '}
+            <Button>Login</Button>
+        </div>
       </Fullpage>
     )
   }
