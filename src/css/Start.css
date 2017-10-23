@@ -5,6 +5,7 @@
 
 #login {
     width: 60%;
+    min-width: 325px;
     max-width: 960px;
     margin: 0 auto;
     background: #61c5c1;
