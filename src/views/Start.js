@@ -4,7 +4,7 @@ import logo from '../static/logotype_white.svg'
 import Fullpage from '../components/Fullpage'
 import Button from '../components/Button'
 
-class Login extends Component {
+class Start extends Component {
   render() {
     return (
       <Fullpage background='#61c5c1' color='white' textAlign='center'>
@@ -17,4 +17,4 @@ class Login extends Component {
   }
 }
 
-export default Login
+export default Start

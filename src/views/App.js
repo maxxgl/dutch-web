@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Home from './Home'
-import Login from './Login'
+import Start from './Start'
 
 class App extends Component {
   loggedIn() {
@@ -11,7 +11,7 @@ class App extends Component {
     if (this.loggedIn()) {
       return <Home />
     }
-    return <Login />
+    return <Start />
   }
 }
 
