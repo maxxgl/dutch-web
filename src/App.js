@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
+import Home from './Home'
+import Login from './Login'
 
 class App extends Component {
-  render() {
-    return (
-      <div>
-      </div>
-    )
+  loggedIn() {
+    return false
+  }
+
+  render(){
+    if (this.loggedIn()) {
+      return <Home />
+    }
+    return <Login />
   }
 }
 
