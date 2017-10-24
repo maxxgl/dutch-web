@@ -12,8 +12,8 @@ class Start extends Component {
         <div id='login'>
           <img src={logo} alt='logo' className='logo'/>
           <h3>Make real connections, together</h3>
-          <Button width='30%'>Sign Up</Button>
-          <Button width='30%'>Login</Button>
+          <Button>Sign Up</Button>
+          <Button>Login</Button>
           <div>
            <Button primary>About</Button>
           </div>
