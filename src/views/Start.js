@@ -11,7 +11,7 @@ class Start extends Component {
       <Fullpage background='#61c5c1' color='white' textAlign='center'>
         <div id='login'>
           <img src={logo} alt='logo' className='logo'/>
-          <h3>Make real connections, together</h3>
+          <h3>Make real connections, together.</h3>
           <Button>Sign Up</Button>
           <Button>Login</Button>
           <div>
