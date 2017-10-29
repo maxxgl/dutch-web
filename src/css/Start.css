@@ -3,14 +3,18 @@
     max-width: 500px;
 }
 
-#login {
+#start {
     width: 60%;
-    min-width: 325px;
+    min-width: 300px;
     max-width: 960px;
     margin: 0 auto;
-    background: #61c5c1;
     color: white;
     text-align: center;
+}
+
+.start-wrap {
+    background: url('../static/splash_bk.svg') no-repeat center center fixed;
+    background-size: cover;
 }
 
 h3 {

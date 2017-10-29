@@ -8,8 +8,8 @@ import Button from '../components/Button'
 class Start extends Component {
   render() {
     return (
-      <Fullpage background='#61c5c1' color='white' textAlign='center'>
-        <div id='login'>
+      <Fullpage color='white' textAlign='center' className='start-wrap'>
+        <div id='start'>
           <img src={logo} alt='logo' className='logo'/>
           <h3>Make real connections, together.</h3>
           <Link to='/signup'>

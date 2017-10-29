@@ -4,11 +4,11 @@ class Fullpage extends Component {
   render() {
     return (
       <div style={{
-          backgroundColor: this.props.background,
           color: this.props.color,
           textAlign: this.props.textAlign,
           height: '100%'
         }}
+        className={this.props.className}
       >
         {this.props.children}
       </div>
