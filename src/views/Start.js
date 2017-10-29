@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import '../css/Start.css'
+import { Link } from 'react-router-dom'
 import logo from '../static/logotype_white.svg'
 import Fullpage from '../components/Fullpage'
 import Button from '../components/Button'
@@ -12,7 +13,9 @@ class Start extends Component {
         <div id='login'>
           <img src={logo} alt='logo' className='logo'/>
           <h3>Make real connections, together.</h3>
-          <Button>Sign Up</Button>
+          <Link to='/login'>
+            <Button>Sign Up</Button>
+          </Link>
           <Button>Login</Button>
           <div>
            <Button primary>About</Button>
