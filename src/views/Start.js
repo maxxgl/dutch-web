@@ -13,7 +13,7 @@ class Start extends Component {
         <div id='login'>
           <img src={logo} alt='logo' className='logo'/>
           <h3>Make real connections, together.</h3>
-          <Link to='/login'>
+          <Link to='/signup'>
             <Button>Sign Up</Button>
           </Link>
           <Button>Login</Button>
