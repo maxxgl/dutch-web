@@ -5,7 +5,7 @@ import logo from '../static/logotype_green.svg'
 import circle from '../static/circle.svg'
 import { Grid, Column } from '../components/Grid'
 
-class Login extends Component {
+export default class Signup extends Component {
   render() {
     return (
       <Fullpage>
@@ -21,7 +21,7 @@ const SignupHeader = () => (
       <img src={logo} alt='logo' className='signup-logo'/>
     </Column>
     <Column size='u-1-2 circle-column'>
-     <Circle /><Circle /><Circle /><Circle /><Circle />
+     <Circle /><Circle /><Circle /><Circle /><Circle /><Circle /><Circle />
     </Column>
     <Column size='u-1-4' />
   </Grid>
@@ -30,5 +30,3 @@ const SignupHeader = () => (
 const Circle = () => (
   <img src={circle} alt='circle' className='circle'/>
 )
-
-export default Login
