@@ -2,3 +2,13 @@
     padding: .75em 1em;
     width: 6em;
 }
+
+.circle {
+    width: .7em;
+    padding-right: 1.5em;
+}
+
+.circle-column {
+    text-align: center;
+    padding-top: 1.25em;
+}
