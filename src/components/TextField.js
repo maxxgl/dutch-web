@@ -3,7 +3,7 @@ import '../css/TextField.css'
 
 export default class TextField extends Component {
   render() {
-    classes = "mui-textfield" + {this.props.className}
+    const classes = 'mui-textfield ' + this.props.className
     return (
       <div className={classes}>
         <input

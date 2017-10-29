@@ -4,12 +4,24 @@ import Fullpage from '../components/Fullpage'
 import logo from '../static/logotype_green.svg'
 import circle from '../static/circle.svg'
 import { Grid, Column } from '../components/Grid'
+import TextField from '../components/TextField'
+import Header from '../components/Header'
 
 export default class Signup extends Component {
   render() {
     return (
       <Fullpage>
         <SignupHeader />
+        <Grid>
+          <Column size='u-1-2'>
+            <TextField type='email' placeholder='Email' />
+            <TextField type='password' placeholder='Password'/>
+          </Column>
+          <Column size='u-1-2'>
+            <Header>What is your email address?</Header>
+            <div>So we can provide you the best experience we will ask to you log into your email, this way we can get an idea of your schedule.</div>
+          </Column>
+        </Grid>
       </Fullpage>
     )
   }
