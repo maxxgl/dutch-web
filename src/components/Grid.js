@@ -3,8 +3,9 @@ import '../css/Grid.css'
 
 export class Grid extends Component {
   render() {
+    const classes = 'g ' + this.props.className
     return (
-      <div className='g'>{this.props.children}</div>
+      <div className={classes}>{this.props.children}</div>
     )
   }
 }

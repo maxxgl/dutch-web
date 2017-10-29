@@ -3,6 +3,10 @@
     width: 6em;
 }
 
+.signup-content {
+    padding-top: 25vh;
+}
+
 .circle {
     width: .7em;
     padding-right: 5%;

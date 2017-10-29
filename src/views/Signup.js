@@ -12,15 +12,18 @@ export default class Signup extends Component {
     return (
       <Fullpage>
         <SignupHeader />
-        <Grid>
-          <Column size='u-1-2'>
+        <Grid className='signup-content'>
+          <Column size='u-2-24' />
+          <Column size='u-9-24'>
             <TextField type='email' placeholder='Email' />
             <TextField type='password' placeholder='Password'/>
           </Column>
-          <Column size='u-1-2'>
+          <Column size='u-2-24' />
+          <Column size='u-9-24'>
             <Header>What is your email address?</Header>
             <div>So we can provide you the best experience we will ask to you log into your email, this way we can get an idea of your schedule.</div>
           </Column>
+          <Column size='u-2-24' />
         </Grid>
       </Fullpage>
     )
