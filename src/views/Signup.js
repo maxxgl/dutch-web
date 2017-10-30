@@ -108,12 +108,11 @@ const Location = () => (
 const Traits = () => (
   <SignupContent>
     <div>
-      <input type="range" min="1" max="100" />
+      <TextField type='text' placeholder='Traits' />
     </div>
     <div>
-      <Header>What is your location and how far will you travel for a date?</Header>
-      <TextField type='text' placeholder='Zip Code' />
-      <div>Find My Location</div>
+      <Header>What are 5 traits you look for in a relationship?</Header>
+      <div>Use single words.</div>
     </div>
   </SignupContent>
 )
@@ -124,9 +123,8 @@ const Money = () => (
       <input type="range" min="1" max="100" />
     </div>
     <div>
-      <Header>What is your location and how far will you travel for a date?</Header>
-      <TextField type='text' placeholder='Zip Code' />
-      <div>Find My Location</div>
+      <Header>About how much are you willing to spend on a date?</Header>
+      <div>You can change this later.</div>
     </div>
   </SignupContent>
 )
@@ -134,12 +132,10 @@ const Money = () => (
 const Gender = () => (
   <SignupContent>
     <div>
-      <input type="range" min="1" max="100" />
     </div>
     <div>
-      <Header>What is your location and how far will you travel for a date?</Header>
-      <TextField type='text' placeholder='Zip Code' />
-      <div>Find My Location</div>
+      <Header>What are you looking for?</Header>
+      <div>You can select more than one.</div>
     </div>
   </SignupContent>
 )
@@ -147,12 +143,13 @@ const Gender = () => (
 const Age = () => (
   <SignupContent>
     <div>
-      <input type="range" min="1" max="100" />
+      <TextField type='number' placeholder='I am' />
+      <TextField type='number' placeholder='Young' />
+      <TextField type='number' placeholder='Old' />
     </div>
     <div>
-      <Header>What is your location and how far will you travel for a date?</Header>
-      <TextField type='text' placeholder='Zip Code' />
-      <div>Find My Location</div>
+      <Header>How old are you?</Header>
+      <div>What age range are you looking for?</div>
     </div>
   </SignupContent>
 )
