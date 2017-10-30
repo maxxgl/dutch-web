@@ -12,10 +12,12 @@ import Header from '../components/Header'
 
 export default class Signup extends Component {
   render() {
+    let base = this.props.match.url
     return (
       <Fullpage>
         <SignupHeader match={this.props.match}/>
-        <Route exact path={ this.props.match.url + '/email' } component={Email}/>
+        <Route exact path={ base + '/email' } component={Email}/>
+        <Route exact path={ base + '/location' } component={Location}/>
       </Fullpage>
     )
   }
@@ -79,6 +81,19 @@ const Email = () => (
     <div>
       <Header>What is your email address?</Header>
       <div>So we can provide you the best experience we will ask to you log into your email, this way we can get an idea of your schedule.</div>
+    </div>
+  </SignupContent>
+)
+
+const Location = () => (
+  <SignupContent>
+    <div>
+      <input type="range" min="1" max="100" />
+    </div>
+    <div>
+      <Header>What is your location and how far will you travel for a date?</Header>
+      <TextField type='text' placeholder='Zip Code' />
+      <div>Find My Location</div>
     </div>
   </SignupContent>
 )
