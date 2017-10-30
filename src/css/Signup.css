@@ -9,8 +9,8 @@
 
 .circle {
     width: .7em;
-    padding-right: 5%;
-    height: 100%;
+    margin-right: 5%;
+    margin-top: 1.5em;
 }
 
 .circle-column {
