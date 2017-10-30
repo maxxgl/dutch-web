@@ -20,7 +20,7 @@
 }
 
 .mui-textfield > input:focus ~ label {
-  color: #2196F3;
+  color: #61c5c1;
 }
 
 .mui-textfield > input {
@@ -29,21 +29,22 @@
   background-color: transparent;
   color: rgba(0, 0, 0, 0.87);
   border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.26);
+  border-bottom: 1.5px solid rgba(0, 0, 0, 0.75);
   outline: none;
   width: 100%;
   padding: 0;
   box-shadow: none;
   border-radius: 0px;
   font-size: 16px;
+  height: 32px;
   font-family: inherit;
   line-height: inherit;
   background-image: none;
 }
 
 .mui-textfield > input:focus {
-  border-color: #2196F3;
-  border-width: 2px;
+  border-color: #61c5c1;
+  border-width: 1.5px;
 }
 
 .mui-textfield > input:disabled {
@@ -59,22 +60,8 @@
 }
 
 .mui-textfield > input::placeholder {
-  color: rgba(0, 0, 0, 0.26);
+  color: rgba(0, 0, 0, 0.5);
   opacity: 1;
-}
-
-.mui-textfield > input {
-  height: 32px;
-}
-
-.mui-textfield > input:focus {
-  height: 33px;
-  margin-bottom: -1px;
-}
-
-.mui-textfield > input:focus {
-  height: 33px;
-  margin-bottom: -1px;
 }
 
 .mui-textfield > input:invalid:not(:focus):not(:required), .mui-textfield > input:invalid:not(:focus):required.mui--is-not-empty, .mui-textfield > input:invalid:not(:focus):required.mui--is-empty.mui--is-touched, .mui-textfield > input:invalid:not(:focus):required[value]:not([value=""]):not(.mui--is-empty):not(.mui--is-not-empty), .mui-textfield > input:invalid:not(:focus):required:not(:empty):not(.mui--is-empty):not(.mui--is-not-empty),
