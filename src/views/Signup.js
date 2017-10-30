@@ -18,6 +18,10 @@ export default class Signup extends Component {
         <SignupHeader match={this.props.match}/>
         <Route exact path={ base + '/email' } component={Email}/>
         <Route exact path={ base + '/location' } component={Location}/>
+        <Route exact path={ base + '/traits' } component={Traits}/>
+        <Route exact path={ base + '/money' } component={Money}/>
+        <Route exact path={ base + '/gender' } component={Gender}/>
+        <Route exact path={ base + '/age' } component={Age}/>
       </Fullpage>
     )
   }
@@ -32,7 +36,10 @@ const SignupHeader = ({ match }) => (
       <nav>
         <Circle to={match.url + '/email'} active={true}/>
         <Circle to={match.url + '/location'} active={true}/>
+        <Circle to={match.url + '/traits'} active={true}/>
         <Circle to={match.url + '/money'} active={true}/>
+        <Circle to={match.url + '/gender'} active={true}/>
+        <Circle to={match.url + '/age'} active={true}/>
       </nav>
     </Column>
     <Column size='u-1-4' />
@@ -86,6 +93,58 @@ const Email = () => (
 )
 
 const Location = () => (
+  <SignupContent>
+    <div>
+      <input type="range" min="1" max="100" />
+    </div>
+    <div>
+      <Header>What is your location and how far will you travel for a date?</Header>
+      <TextField type='text' placeholder='Zip Code' />
+      <div>Find My Location</div>
+    </div>
+  </SignupContent>
+)
+
+const Traits = () => (
+  <SignupContent>
+    <div>
+      <input type="range" min="1" max="100" />
+    </div>
+    <div>
+      <Header>What is your location and how far will you travel for a date?</Header>
+      <TextField type='text' placeholder='Zip Code' />
+      <div>Find My Location</div>
+    </div>
+  </SignupContent>
+)
+
+const Money = () => (
+  <SignupContent>
+    <div>
+      <input type="range" min="1" max="100" />
+    </div>
+    <div>
+      <Header>What is your location and how far will you travel for a date?</Header>
+      <TextField type='text' placeholder='Zip Code' />
+      <div>Find My Location</div>
+    </div>
+  </SignupContent>
+)
+
+const Gender = () => (
+  <SignupContent>
+    <div>
+      <input type="range" min="1" max="100" />
+    </div>
+    <div>
+      <Header>What is your location and how far will you travel for a date?</Header>
+      <TextField type='text' placeholder='Zip Code' />
+      <div>Find My Location</div>
+    </div>
+  </SignupContent>
+)
+
+const Age = () => (
   <SignupContent>
     <div>
       <input type="range" min="1" max="100" />
