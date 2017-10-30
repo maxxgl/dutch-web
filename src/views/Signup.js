@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../css/Signup.css'
 import Fullpage from '../components/Fullpage'
 import logo from '../static/logotype_green.svg'
+import next from '../static/next_icon.svg'
 import circle from '../static/circle.svg'
 import { Grid, Column } from '../components/Grid'
 import TextField from '../components/TextField'
@@ -23,7 +24,9 @@ export default class Signup extends Component {
             <Header>What is your email address?</Header>
             <div>So we can provide you the best experience we will ask to you log into your email, this way we can get an idea of your schedule.</div>
           </Column>
-          <Column size='u-2-24' />
+          <Column size='u-2-24'>
+            <img src={next} alt='next' className='icon-centered'/>
+          </Column>
         </Grid>
       </Fullpage>
     )

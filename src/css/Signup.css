@@ -10,9 +10,17 @@
 .circle {
     width: .7em;
     padding-right: 5%;
+    height: 100%;
 }
 
 .circle-column {
     text-align: center;
-    padding-top: 1.25em;
+}
+
+.icon-centered {
+    height: 100%;
+    margin: 0 auto;
+    width: 2.25em;
+    float: right;
+    padding-right: .75em;
 }
