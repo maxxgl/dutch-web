@@ -35,9 +35,9 @@ export default class Signup extends Component {
     return [
       <Email key={1} change={this.onChange} />,
       <Location key={2} change={this.onChange} />,
-      <Money key={4} change={this.onChange} />,
       <Traits key={3} change={this.onChange} traits={this.state.traits}
         newTrait={this.newTrait} />,
+      <Money key={4} change={this.onChange} />,
       <Gender key={5} change={this.onChange} />,
       <Age key={6} change={this.onChange} />
     ]
@@ -171,10 +171,13 @@ const Traits = (props) => {
   )
 }
 
-const Money = () => (
+const Money = (props) => (
   <SignupContent>
     <div>
-      <input type="range" min="1" max="100" />
+      <span>$</span>
+      <input type='range' onChange={props.change} name='budget'
+        defaultValue='50' min='0' max='100' />
+      <span>$$$$</span>
     </div>
     <div>
       <Header>About how much are you willing to spend on a date?</Header>
