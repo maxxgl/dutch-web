@@ -17,7 +17,7 @@ export default class Signup extends Component {
   constructor(props) {
     super(props)
     this.state = { page: 4, email: '', password: '', range: '25', zip: '', 
-      traits: [], budget: 0, gender: '', seekingGender: '', age: 0, 
+      traits: [], budget: 0, gender: '', seeking: '', age: 0, 
       youngest: 0, oldest: 0 }
     this.pages()
   }
@@ -34,6 +34,9 @@ export default class Signup extends Component {
     this.setState({traits: list})
   }
 
+  setGender = (e) => this.setState({gender: e.target.id})
+  setSeeking = (e) => this.setState({seeking: e.target.id})
+
   pages = (props) => {
     return [
       <Email key={1} change={this.onChange} />,
@@ -41,7 +44,9 @@ export default class Signup extends Component {
       <Traits key={3} change={this.onChange} traits={this.state.traits}
         newTrait={this.newTrait} />,
       <Money key={4} change={this.onChange} />,
-      <Gender key={5} change={this.onChange} />,
+      <Gender key={5} change={this.onChange} setGender={this.setGender}
+        setSeeking={this.setSeeking} gender={this.state.gender}
+        seeking={this.state.seeking} />,
       <Age key={6} change={this.onChange} />
     ]
   }
@@ -189,15 +194,13 @@ const Money = (props) => (
   </SignupContent>
 )
 
-const Gender = () => (
+const Gender = (props) => (
   <SignupContent>
     <div>
-    <Header>I'm a</Header>
-    <GenderButtons />
-    <Header>Seeking a</Header>
-    <GenderButtons />
-    <Header>to Date</Header>
-
+      <Header>I'm a {props.gender}</Header>
+      <GenderButtons id='gender' onChange={props.setGender} />
+      <Header>Seeking a {props.seeking}</Header>
+      <GenderButtons onChange={props.setSeeking} />
     </div>
     <div>
       <Header>What are you looking for?</Header>
@@ -206,16 +209,16 @@ const Gender = () => (
   </SignupContent>
 )
 
-const GenderButtons = () => (
+const GenderButtons = (props) => (
   <Grid>
-    <Column size='u-1-3 gender-buttons'>
-      <img src={female} className='gender-icons' alt='female'/>
+    <Column size='u-1-3 gender-buttons' onClick={props.onChange} id='Woman'>
+      <img src={female} className='gender-icons' alt='female' id='Woman' />
     </Column>
-    <Column size='u-1-3 gender-buttons'>
-      <img src={male} className='gender-icons' alt='male'/>
+    <Column size='u-1-3 gender-buttons' onClick={props.onChange} id='Man'>
+      <img src={male} className='gender-icons' alt='male' id='Man' />
     </Column>
-    <Column size='u-1-3 gender-buttons'>
-      <img src={trans} className='gender-icons' alt='trans'/>
+    <Column size='u-1-3 gender-buttons' onClick={props.onChange} id='Non-Binary'>
+      <img src={trans} className='gender-icons' alt='trans' id='Non-Binary' />
     </Column>
   </Grid>
 )

@@ -37,6 +37,7 @@
     box-sizing: border-box;
     border: 1px solid #61c5c1;
     padding: 0 5%;
+    cursor: pointer;
 }
 
 .gender-icons {

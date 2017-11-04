@@ -13,7 +13,14 @@ export class Grid extends Component {
 export class Column extends Component {
   render() {
     return (
-      <div className={this.props.size}>{this.props.children}</div>
+      <div
+        className={this.props.size}
+        onClick={this.props.onClick}
+        id={this.props.id}
+        name={this.props.name}
+      >
+        {this.props.children}
+      </div>
     )
   }
 }
