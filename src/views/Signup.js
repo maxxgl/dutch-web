@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import '../css/Signup.css'
 import Fullpage from '../components/Fullpage'
 import logo from '../static/logotype_green.svg'
-import { Link, Route } from 'react-router-dom'
 import next from '../static/next_icon.svg'
 import circle from '../static/circle.svg'
 import circleGreen from '../static/circle_green.svg'
@@ -12,53 +11,53 @@ import Header from '../components/Header'
 import findLocation from '../static/findlocation_icon.svg'
 
 export default class Signup extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {page: 0};
+  }
+
+  pages = [
+    <Email key={1} />,
+    <Location key={2} />,
+    <Traits key={3} />,
+    <Money key={4} />,
+    <Gender key={5} />,
+    <Age key={6} />
+  ]
+
   render() {
-    let base = this.props.match.url
+
     return (
       <Fullpage>
-        <SignupHeader match={this.props.match}/>
-        <Route exact path={ base + '/email' } component={Email}/>
-        <Route exact path={ base + '/location' } component={Location}/>
-        <Route exact path={ base + '/traits' } component={Traits}/>
-        <Route exact path={ base + '/money' } component={Money}/>
-        <Route exact path={ base + '/gender' } component={Gender}/>
-        <Route exact path={ base + '/age' } component={Age}/>
+        <Grid>
+          <Column size='u-1-4'>
+            <img src={logo} alt='logo' className='signup-logo'/>
+          </Column>
+          <Column size='u-1-2 circle-column'>
+            <nav>
+              <Circle active={true}/>
+              <Circle active={true}/>
+              <Circle active={true}/>
+              <Circle active={true}/>
+              <Circle active={true}/>
+              <Circle active={true}/>
+            </nav>
+          </Column>
+          <Column size='u-1-4' />
+        </Grid>
+        {this.pages[this.state.page]}
       </Fullpage>
     )
   }
 }
 
-const SignupHeader = ({ match }) => (
-  <Grid>
-    <Column size='u-1-4'>
-      <img src={logo} alt='logo' className='signup-logo'/>
-    </Column>
-    <Column size='u-1-2 circle-column'>
-      <nav>
-        <Circle to={match.url + '/email'} active={true}/>
-        <Circle to={match.url + '/location'} active={true}/>
-        <Circle to={match.url + '/traits'} active={true}/>
-        <Circle to={match.url + '/money'} active={true}/>
-        <Circle to={match.url + '/gender'} active={true}/>
-        <Circle to={match.url + '/age'} active={true}/>
-      </nav>
-    </Column>
-    <Column size='u-1-4' />
-  </Grid>
-)
-
-const Circle = ({ to, active }) => (
-  <Route path={to} exact={active} children={({ match }) => {
-    let circleType = <img src={circle} alt='circle' className='circle'/>
-    if (match) {
-      circleType = <img src={circleGreen} alt='activeCircle' className='circle'/>
-    }
-    return (
-      <Link to={to}>
-        {circleType}
-      </Link>
-  )}}/>
-)
+const Circle = () => {
+  let circleType = <img src={circle} alt='circle' className='circle'/>
+  if (true) {
+    circleType = <img src={circleGreen} alt='activeCircle' className='circle'/>
+  }
+  return <span>{circleType}</span>
+}
 
 class SignupContent extends Component {
   render() {
@@ -93,10 +92,13 @@ const Email = () => (
   </SignupContent>
 )
 
-const Location = () => (
+const Location = (props) => (
   <SignupContent>
     <div>
-      <input type="range" min="1" max="100" />
+      <div style={{ textAlign: 'center' }}>{props.range}</div>
+      <span>1</span>
+      <input type="range" value='25' min="1" max="50" />
+      <span>50</span>
     </div>
     <div>
       <Header>What is your location and how far will you travel for a date?</Header>
