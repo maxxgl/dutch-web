@@ -96,11 +96,13 @@ class SignupContent extends Component {
   }
 }
 
-const Email = () => (
+const Email = (props) => (
   <SignupContent>
     <div>
-      <TextField type='email' placeholder='Email' />
-      <TextField type='password' placeholder='Password'/>
+      <TextField type='email' onChange={props.change} placeholder='Email'
+      name='email' />
+      <TextField type='password' onChange={props.change} placeholder='Password'
+      name='password' />
     </div>
     <div>
       <Header>What is your email address?</Header>
