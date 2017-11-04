@@ -31,3 +31,17 @@
     vertical-align: middle;
     padding-right: 0.5em;
 }
+
+.gender-buttons {
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid #61c5c1;
+    padding: 0 5%;
+}
+
+.gender-icons {
+    display: block;
+    width: 50%;
+    margin: 15% auto;
+}
+

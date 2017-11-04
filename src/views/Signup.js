@@ -9,11 +9,14 @@ import { Grid, Column } from '../components/Grid'
 import TextField from '../components/TextField'
 import Header from '../components/Header'
 import findLocation from '../static/findlocation_icon.svg'
+import female from '../static/woman_icon.svg'
+import male from '../static/man_icon.svg'
+import trans from '../static/trans_icon.svg'
 
 export default class Signup extends Component {
   constructor(props) {
     super(props)
-    this.state = { page: 0, email: '', password: '', range: '25', zip: '', 
+    this.state = { page: 4, email: '', password: '', range: '25', zip: '', 
       traits: [], budget: 0, gender: '', seekingGender: '', age: 0, 
       youngest: 0, oldest: 0 }
     this.pages()
@@ -189,12 +192,32 @@ const Money = (props) => (
 const Gender = () => (
   <SignupContent>
     <div>
+    <Header>I'm a</Header>
+    <GenderButtons />
+    <Header>Seeking a</Header>
+    <GenderButtons />
+    <Header>to Date</Header>
+
     </div>
     <div>
       <Header>What are you looking for?</Header>
       <div>You can select more than one.</div>
     </div>
   </SignupContent>
+)
+
+const GenderButtons = () => (
+  <Grid>
+    <Column size='u-1-3 gender-buttons'>
+      <img src={female} className='gender-icons' alt='female'/>
+    </Column>
+    <Column size='u-1-3 gender-buttons'>
+      <img src={male} className='gender-icons' alt='male'/>
+    </Column>
+    <Column size='u-1-3 gender-buttons'>
+      <img src={trans} className='gender-icons' alt='trans'/>
+    </Column>
+  </Grid>
 )
 
 const Age = () => (
