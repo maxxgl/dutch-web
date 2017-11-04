@@ -18,9 +18,9 @@ import { consumer } from '../utils/consumer'
 export default class Signup extends Component {
   constructor(props) {
     super(props)
-    this.state = { page: 6, email: '', password: '', range: '25', zip: '',
-      traits: [], budget: 0, gender: '', seeking: '', age: 0, 
-      youngest: 0, oldest: 0, submitted: 0 }
+    this.state = { page: 0, firstName: '', lastName: '', email: '',
+      password: '', range: '25', zip: '', likes: [], budget: 0, gender: '',
+      seeking: '', age: 0, youngest: 0, oldest: 0, submitted: 0 }
     this.pages()
   }
 
@@ -31,26 +31,30 @@ export default class Signup extends Component {
   onChange = (e) => this.setState({[e.target.name]: e.target.value})
 
   newTrait = (value) => {
-    let list = this.state.traits
+    let list = this.state.likes
     list.push(value)
-    this.setState({traits: list})
+    this.setState({likes: list})
   }
 
   setGender = (e) => this.setState({gender: e.target.id})
   setSeeking = (e) => this.setState({seeking: e.target.id})
 
+  consume = () => {
+    consumer('user/', 'POST', this.state)
+  }
+
   pages = (props) => {
     return [
       <Email key={1} change={this.onChange} />,
       <Location key={2} change={this.onChange} />,
-      <Traits key={3} change={this.onChange} traits={this.state.traits}
+      <Traits key={3} change={this.onChange} traits={this.state.likes}
         newTrait={this.newTrait} />,
       <Money key={4} change={this.onChange} />,
       <Gender key={5} change={this.onChange} setGender={this.setGender}
         setSeeking={this.setSeeking} gender={this.state.gender}
         seeking={this.state.seeking} />,
       <Age key={6} change={this.onChange} />,
-      <Submitted key={7} info={this.state} />
+      <Submitted key={7} info={this.state} consume={this.consume}/>
     ]
   }
 
@@ -158,7 +162,7 @@ const Traits = (props) => {
   return (
     <SignupContent>
       <div>
-        <TextField type='text'  placeholder='Traits' name='traits'
+        <TextField type='text'  placeholder='Traits' name='likes'
           handleKeyPress={(e) => {
             if (e.key === 'Enter') {
               props.newTrait(e.target.value)
@@ -252,7 +256,7 @@ const Submitted = (props) => {
             </div>
         ))}</div>
         <div>
-        <Button primary onClick={consumer}>Create Account</Button>
+        <Button primary click={props.consume}>Create Account</Button>
         </div>
       </SignupContent>
     )
