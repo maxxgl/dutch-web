@@ -13,7 +13,7 @@ import findLocation from '../static/findlocation_icon.svg'
 export default class Signup extends Component {
   constructor(props) {
     super(props)
-    this.state = { page: 0, email: '', password: '', range: 0, zip: '', 
+    this.state = { page: 0, email: '', password: '', range: '25', zip: '', 
       traits: [], budget: 0, gender: '', seekingGender: '', age: 0, 
       youngest: 0, oldest: 0 }
   }
@@ -22,19 +22,18 @@ export default class Signup extends Component {
     this.setState({ page: parseInt(e.target.id, 10) })
   }
 
-  handleChange = (e, {name, value}) => this.setState({[name]: value})
+  onChange = (e) => this.setState({[e.target.name]: e.target.value})
 
   pages = [
-    <Email key={1} />,
-    <Location key={2} />,
-    <Traits key={3} />,
-    <Money key={4} />,
-    <Gender key={5} />,
-    <Age key={6} />
+    <Email key={1} change={this.onChange} />,
+    <Location key={2} change={this.onChange} />,
+    <Traits key={3} change={this.onChange} />,
+    <Money key={4} change={this.onChange} />,
+    <Gender key={5} change={this.onChange} />,
+    <Age key={6} change={this.onChange} />
   ]
 
   render() {
-
     return (
       <Fullpage>
         <Grid>
@@ -53,6 +52,7 @@ export default class Signup extends Component {
           <Column size='u-1-4' />
         </Grid>
         {this.pages[this.state.page]}
+        {console.log(this.state)}
       </Fullpage>
     )
   }
@@ -114,12 +114,16 @@ const Location = (props) => (
     <div>
       <div style={{ textAlign: 'center' }}>{props.range}</div>
       <span>1</span>
-      <input type="range" value='25' min="1" max="50" />
+      <input type='range' onChange={props.change} name='range'
+        defaultValue='25' min='1' max='50' />
       <span>50</span>
     </div>
     <div>
-      <Header>What is your location and how far will you travel for a date?</Header>
-      <TextField type='text' placeholder='Zip Code' />
+      <Header>
+        What is your location, and how far will you travel for a date
+      </Header>
+      <TextField type='text' onChange={props.change} placeholder='Zip Code'
+        name='zip' />
       <div>
         <img src={findLocation} alt='location' className='location'/>
         <span>Find My Location</span>

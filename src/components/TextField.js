@@ -9,6 +9,8 @@ export default class TextField extends Component {
         <input
           type={this.props.type}
           placeholder={this.props.placeholder}
+          name={this.props.name}
+          onChange={this.props.onChange}
         />
       </div>
     )
