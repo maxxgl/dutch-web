@@ -18,9 +18,8 @@ class Button extends Component {
     return (
       <button
         className={this.primary()}
-        style={{
-          width: this.width()
-        }}
+        style={{ width: this.width() }}
+        onClick={this.props.onClick}
       >
         {this.props.children}
       </button>

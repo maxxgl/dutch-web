@@ -12,13 +12,15 @@ import findLocation from '../static/findlocation_icon.svg'
 import female from '../static/woman_icon.svg'
 import male from '../static/man_icon.svg'
 import trans from '../static/trans_icon.svg'
+import Button from '../components/Button'
+import { consumer } from '../utils/consumer'
 
 export default class Signup extends Component {
   constructor(props) {
     super(props)
-    this.state = { page: 4, email: '', password: '', range: '25', zip: '', 
+    this.state = { page: 6, email: '', password: '', range: '25', zip: '',
       traits: [], budget: 0, gender: '', seeking: '', age: 0, 
-      youngest: 0, oldest: 0 }
+      youngest: 0, oldest: 0, submitted: 0 }
     this.pages()
   }
 
@@ -47,7 +49,8 @@ export default class Signup extends Component {
       <Gender key={5} change={this.onChange} setGender={this.setGender}
         setSeeking={this.setSeeking} gender={this.state.gender}
         seeking={this.state.seeking} />,
-      <Age key={6} change={this.onChange} />
+      <Age key={6} change={this.onChange} />,
+      <Submitted key={7} info={this.state} />
     ]
   }
 
@@ -70,7 +73,6 @@ export default class Signup extends Component {
           <Column size='u-1-4' />
         </Grid>
         {this.pages()[this.state.page]}
-        {console.log(this.state)}
       </Fullpage>
     )
   }
@@ -239,3 +241,29 @@ const Age = (props) => (
     </div>
   </SignupContent>
 )
+
+const Submitted = (props) => {
+  if (props.info.submitted === 0) {
+    return (
+      <SignupContent>
+        <div>{Object.keys(props.info).map((item, i) => (
+            <div key={i}>
+              {item}: {props.info[item]}
+            </div>
+        ))}</div>
+        <div>
+        <Button primary onClick={consumer}>Create Account</Button>
+        </div>
+      </SignupContent>
+    )
+  }
+  return (
+    <SignupContent>
+      <div id='submit-box'></div>
+      <div>
+        <Header>That’s it! Get ready for some sweet dates.</Header>
+        <div>If you need to change anything, you can do-so in your account settings.</div>
+      </div>
+    </SignupContent>
+  )
+}
