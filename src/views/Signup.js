@@ -223,12 +223,15 @@ const GenderButtons = (props) => (
   </Grid>
 )
 
-const Age = () => (
+const Age = (props) => (
   <SignupContent>
     <div>
-      <TextField type='number' placeholder='I am' />
-      <TextField type='number' placeholder='Young' />
-      <TextField type='number' placeholder='Old' />
+      <TextField type='number' onChange={props.change} 
+        name='age' placeholder='I am' />
+      <TextField type='number' onChange={props.change} 
+        name='youngest' placeholder='Young' />
+      <TextField type='number' onChange={props.change} 
+        name='oldest' placeholder='Old' />
     </div>
     <div>
       <Header>How old are you?</Header>
