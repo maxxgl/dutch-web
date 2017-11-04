@@ -9,6 +9,7 @@ import circleGreen from '../static/circle_green.svg'
 import { Grid, Column } from '../components/Grid'
 import TextField from '../components/TextField'
 import Header from '../components/Header'
+import findLocation from '../static/findlocation_icon.svg'
 
 export default class Signup extends Component {
   render() {
@@ -100,7 +101,10 @@ const Location = () => (
     <div>
       <Header>What is your location and how far will you travel for a date?</Header>
       <TextField type='text' placeholder='Zip Code' />
-      <div>Find My Location</div>
+      <div>
+        <img src={findLocation} alt='location' className='location'/>
+        <span>Find My Location</span>
+      </div>
     </div>
   </SignupContent>
 )
