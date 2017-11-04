@@ -11,6 +11,7 @@ export default class TextField extends Component {
           placeholder={this.props.placeholder}
           name={this.props.name}
           onChange={this.props.onChange}
+          onKeyPress={this.props.handleKeyPress}
         />
       </div>
     )

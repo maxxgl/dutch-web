@@ -16,6 +16,7 @@ export default class Signup extends Component {
     this.state = { page: 0, email: '', password: '', range: '25', zip: '', 
       traits: [], budget: 0, gender: '', seekingGender: '', age: 0, 
       youngest: 0, oldest: 0 }
+    this.pages()
   }
 
   handlePageChange = (e) => {
@@ -24,14 +25,23 @@ export default class Signup extends Component {
 
   onChange = (e) => this.setState({[e.target.name]: e.target.value})
 
-  pages = [
-    <Email key={1} change={this.onChange} />,
-    <Location key={2} change={this.onChange} />,
-    <Traits key={3} change={this.onChange} />,
-    <Money key={4} change={this.onChange} />,
-    <Gender key={5} change={this.onChange} />,
-    <Age key={6} change={this.onChange} />
-  ]
+  newTrait = (value) => {
+    let list = this.state.traits
+    list.push(value)
+    this.setState({traits: list})
+  }
+
+  pages = (props) => {
+    return [
+      <Email key={1} change={this.onChange} />,
+      <Location key={2} change={this.onChange} />,
+      <Money key={4} change={this.onChange} />,
+      <Traits key={3} change={this.onChange} traits={this.state.traits}
+        newTrait={this.newTrait} />,
+      <Gender key={5} change={this.onChange} />,
+      <Age key={6} change={this.onChange} />
+    ]
+  }
 
   render() {
     return (
@@ -44,14 +54,14 @@ export default class Signup extends Component {
             <nav>
               <Circles
                 page={this.state.page}
-                pageCount={this.pages.length}
+                pageCount={this.pages().length}
                 change={this.handlePageChange}
               />
             </nav>
           </Column>
           <Column size='u-1-4' />
         </Grid>
-        {this.pages[this.state.page]}
+        {this.pages()[this.state.page]}
         {console.log(this.state)}
       </Fullpage>
     )
@@ -134,17 +144,32 @@ const Location = (props) => (
   </SignupContent>
 )
 
-const Traits = () => (
-  <SignupContent>
-    <div>
-      <TextField type='text' placeholder='Traits' />
-    </div>
-    <div>
-      <Header>What are 5 traits you look for in a relationship?</Header>
-      <div>Use single words.</div>
-    </div>
-  </SignupContent>
-)
+const Traits = (props) => {
+  return (
+    <SignupContent>
+      <div>
+        <TextField type='text'  placeholder='Traits' name='traits'
+          handleKeyPress={(e) => {
+            if (e.key === 'Enter') {
+              props.newTrait(e.target.value)
+              e.target.value = ''
+            }}}
+        />
+        <div>
+          {props.traits.map((trait) =>
+            <Header key={trait}>
+              {trait}
+            </Header>
+          )} 
+        </div>
+      </div>
+      <div>
+        <Header>What are 5 traits you look for in a relationship?</Header>
+        <div>Use single words.</div>
+      </div>
+    </SignupContent>
+  )
+}
 
 const Money = () => (
   <SignupContent>
