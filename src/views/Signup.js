@@ -12,9 +12,17 @@ import findLocation from '../static/findlocation_icon.svg'
 
 export default class Signup extends Component {
   constructor(props) {
-    super(props);
-    this.state = {page: 0};
+    super(props)
+    this.state = { page: 0, email: '', password: '', range: 0, zip: '', 
+      traits: [], budget: 0, gender: '', seekingGender: '', age: 0, 
+      youngest: 0, oldest: 0 }
   }
+
+  handlePageChange = (e) => {
+    this.setState({ page: parseInt(e.target.id, 10) })
+  }
+
+  handleChange = (e, {name, value}) => this.setState({[name]: value})
 
   pages = [
     <Email key={1} />,
@@ -35,12 +43,11 @@ export default class Signup extends Component {
           </Column>
           <Column size='u-1-2 circle-column'>
             <nav>
-              <Circle active={true}/>
-              <Circle active={true}/>
-              <Circle active={true}/>
-              <Circle active={true}/>
-              <Circle active={true}/>
-              <Circle active={true}/>
+              <Circles
+                page={this.state.page}
+                pageCount={this.pages.length}
+                change={this.handlePageChange}
+              />
             </nav>
           </Column>
           <Column size='u-1-4' />
@@ -51,12 +58,22 @@ export default class Signup extends Component {
   }
 }
 
-const Circle = () => {
-  let circleType = <img src={circle} alt='circle' className='circle'/>
-  if (true) {
-    circleType = <img src={circleGreen} alt='activeCircle' className='circle'/>
+const Circles = (props) => {
+  let circles = []
+  for (var i = 0; i < props.pageCount; i++) {
+    let circleType = i === props.page ? circleGreen : circle
+    circles.push(
+      <img
+        key={i}
+        src={circleType}
+        id={i}
+        onClick={props.change}
+        alt='circle'
+        className='circle'
+      />
+    )
   }
-  return <span>{circleType}</span>
+  return circles
 }
 
 class SignupContent extends Component {
