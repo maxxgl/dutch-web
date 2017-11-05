@@ -14,6 +14,7 @@ import male from '../static/man_icon.svg'
 import trans from '../static/trans_icon.svg'
 import Button from '../components/Button'
 import { consumer } from '../utils/consumer'
+import { Redirect } from 'react-router-dom'
 
 export default class Signup extends Component {
   constructor(props) {
@@ -58,7 +59,7 @@ export default class Signup extends Component {
         setSeeking={this.setSeeking} gender={this.state.gender}
         seeking={this.state.seeking} />,
       <Age key={6} change={this.onChange} />,
-      <Submitted key={7} info={this.state} consume={this.consume}/>
+      <Submit key={7} info={this.state} consume={this.consume}/>
     ]
   }
 
@@ -250,28 +251,33 @@ const Age = (props) => (
   </SignupContent>
 )
 
-const Submitted = (props) => {
-  if (props.info.submitted === 0) {
-    return (
-      <SignupContent>
-        <div>{Object.keys(props.info).map((item, i) => (
-            <div key={i}>
-              {item}: {props.info[item]}
-            </div>
-        ))}</div>
-        <div>
-        <Button primary click={props.consume}>Create Account</Button>
-        </div>
-      </SignupContent>
-    )
+const Submit = (props) => {
+  if (props.info.submitted) {
+    return <Redirect to={{ pathname: '/signedup' }} />
   }
   return (
     <SignupContent>
-      <div id='submit-box'></div>
-      <div>
-        <Header>That’s it! Get ready for some sweet dates.</Header>
-        <div>If you need to change anything, you can do-so in your account settings.</div>
-      </div>
+      <div>{Object.keys(props.info).map((item, i) => (
+          <div key={i}>
+            {item}: {props.info[item]}
+          </div>
+      ))}</div>
+      <Button primary click={props.consume}>Create Account</Button>
     </SignupContent>
   )
 }
+
+    // <Grid>
+    //   <Column size='u-1-4'>
+    //     <img src={logo} alt='logo' className='signup-logo'/>
+    //   </Column>
+    //   <Column size='u-1-2' />
+    //   <Column size='u-1-4' />
+    // </Grid>
+    // <SignupContent>
+    //   <div id='submit-box'></div>
+    //   <div>
+    //     <Header>That’s it! Get ready for some sweet dates.</Header>
+    //     <div>If you need to change anything, you can do-so in your account settings.</div>
+    //   </div>
+    // </SignupContent>
