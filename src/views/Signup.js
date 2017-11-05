@@ -41,6 +41,10 @@ export default class Signup extends Component {
 
   consume = () => {
     consumer('user/', 'POST', this.state)
+      .then((response) => {
+        if (response) {
+          this.setState({submitted: 1})
+        }})
   }
 
   pages = (props) => {
@@ -174,7 +178,7 @@ const Traits = (props) => {
             <Header key={trait}>
               {trait}
             </Header>
-          )} 
+          )}
         </div>
       </div>
       <div>

@@ -1,7 +1,7 @@
 const api = 'http://localhost:5000/'
 
 export const consumer = (endpoint, method, content) => {
-  fetch(api + endpoint, {
+  return fetch(api + endpoint, {
     method: method,
     headers: {
       'Accept': 'application/json',
