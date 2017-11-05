@@ -1,0 +1,22 @@
+.header {
+    background-color: #343534;
+}
+
+.header-img {
+    display: block;
+    height: 2em;
+}
+
+.header #logo {
+    margin: 0 auto;
+}
+
+.header #profile {
+    margin-left: 1em;
+    border-radius: 2em;
+}
+
+.header #date {
+    float: right;
+    margin-right: 1em;
+}
