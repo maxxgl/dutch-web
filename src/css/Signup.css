@@ -24,6 +24,7 @@
     width: 2.25em;
     float: right;
     padding-right: .75em;
+    cursor: pointer;
 }
 
 .location {

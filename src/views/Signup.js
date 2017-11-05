@@ -25,9 +25,9 @@ export default class Signup extends Component {
     this.pages()
   }
 
-  handlePageChange = (e) => {
-    this.setState({ page: parseInt(e.target.id, 10) })
-  }
+  handlePageChange = (e) => this.setState({ page: parseInt(e.target.id, 10) })
+
+  nextPage = () => this.setState({ page: this.state.page + 1 })
 
   onChange = (e) => this.setState({[e.target.name]: e.target.value})
 
@@ -50,16 +50,16 @@ export default class Signup extends Component {
 
   pages = (props) => {
     return [
-      <Email key={1} change={this.onChange} />,
-      <Location key={2} change={this.onChange} />,
+      <Email key={1} change={this.onChange} pager={this.nextPage} />,
+      <Location key={2} change={this.onChange} pager={this.nextPage} />,
       <Traits key={3} change={this.onChange} traits={this.state.likes}
-        newTrait={this.newTrait} />,
-      <Money key={4} change={this.onChange} />,
+        newTrait={this.newTrait} pager={this.nextPage} />,
+      <Money key={4} change={this.onChange} pager={this.nextPage} />,
       <Gender key={5} change={this.onChange} setGender={this.setGender}
         setSeeking={this.setSeeking} gender={this.state.gender}
-        seeking={this.state.seeking} />,
-      <Age key={6} change={this.onChange} />,
-      <Submit key={7} info={this.state} consume={this.consume}/>
+        seeking={this.state.seeking} pager={this.nextPage} />,
+      <Age key={6} change={this.onChange} pager={this.nextPage} />,
+      <Submit key={7} info={this.state} consume={this.consume} />
     ]
   }
 
@@ -118,7 +118,8 @@ class SignupContent extends Component {
           {this.props.children[1]}
         </Column>
         <Column size='u-3-24'>
-          <img src={next} alt='next' className='icon-centered'/>
+          <img src={next} onClick={this.props.pager} alt='next'
+            className='icon-centered'/>
         </Column>
       </Grid>
     )
@@ -126,7 +127,7 @@ class SignupContent extends Component {
 }
 
 const Email = (props) => (
-  <SignupContent>
+  <SignupContent pager={props.pager}>
     <div>
       <TextField type='email' onChange={props.change} placeholder='Email'
       name='email' />
@@ -141,7 +142,7 @@ const Email = (props) => (
 )
 
 const Location = (props) => (
-  <SignupContent>
+  <SignupContent pager={props.pager}>
     <div>
       <div style={{ textAlign: 'center' }}>{props.range}</div>
       <span>1</span>
@@ -165,7 +166,7 @@ const Location = (props) => (
 
 const Traits = (props) => {
   return (
-    <SignupContent>
+    <SignupContent pager={props.pager}>
       <div>
         <TextField type='text'  placeholder='Traits' name='likes'
           handleKeyPress={(e) => {
@@ -191,7 +192,7 @@ const Traits = (props) => {
 }
 
 const Money = (props) => (
-  <SignupContent>
+  <SignupContent pager={props.pager}>
     <div>
       <span>$</span>
       <input type='range' onChange={props.change} name='budget'
@@ -206,7 +207,7 @@ const Money = (props) => (
 )
 
 const Gender = (props) => (
-  <SignupContent>
+  <SignupContent pager={props.pager}>
     <div>
       <Header>I'm a {props.gender}</Header>
       <GenderButtons id='gender' onChange={props.setGender} />
@@ -235,7 +236,7 @@ const GenderButtons = (props) => (
 )
 
 const Age = (props) => (
-  <SignupContent>
+  <SignupContent pager={props.pager}>
     <div>
       <TextField type='number' onChange={props.change} 
         name='age' placeholder='I am' />
