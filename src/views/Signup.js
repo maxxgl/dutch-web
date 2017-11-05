@@ -266,18 +266,3 @@ const Submit = (props) => {
     </SignupContent>
   )
 }
-
-    // <Grid>
-    //   <Column size='u-1-4'>
-    //     <img src={logo} alt='logo' className='signup-logo'/>
-    //   </Column>
-    //   <Column size='u-1-2' />
-    //   <Column size='u-1-4' />
-    // </Grid>
-    // <SignupContent>
-    //   <div id='submit-box'></div>
-    //   <div>
-    //     <Header>That’s it! Get ready for some sweet dates.</Header>
-    //     <div>If you need to change anything, you can do-so in your account settings.</div>
-    //   </div>
-    // </SignupContent>
