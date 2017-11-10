@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import '../css/HomeHeader.css'
+import '../css/Head.css'
 import { Link } from 'react-router-dom'
 import logo from '../static/logotype_white.svg'
 import { Grid, Column } from '../components/Grid'
 import girl from '../static/girl.jpg'
 import date from '../static/date_icon.svg'
 
-export default class HomeHeader extends Component {
+export default class Head extends Component {
   render() {
     return (
       <Grid className='head'>
