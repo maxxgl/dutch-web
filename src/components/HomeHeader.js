@@ -9,20 +9,20 @@ import date from '../static/date_icon.svg'
 export default class HomeHeader extends Component {
   render() {
     return (
-      <Grid className='header'>
+      <Grid className='head'>
         <Column size='u-1-4'>
           <Link to={{ pathname: '/profile' }}>
-            <img src={girl} alt='logo' className='header-img' id='profile'/>              
+            <img src={girl} alt='logo' className='head-img' id='profile'/>
           </Link>
         </Column>
         <Column size='u-1-2'>
           <Link to={{ pathname: '/home' }}>
-            <img src={logo} alt='logo' className='header-img' id='logo' />
+            <img src={logo} alt='logo' className='head-img' id='logo' />
           </Link>
         </Column>
         <Column size='u-1-4'>
           <Link to={{ pathname: '/dates' }}>
-            <img src={date} alt='logo' className='header-img' id='date'/>
+            <img src={date} alt='logo' className='head-img' id='date'/>
           </Link>
         </Column>
         </Grid>

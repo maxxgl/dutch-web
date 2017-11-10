@@ -1,22 +1,21 @@
-.header {
+.head {
     background-color: #343534;
+    padding: 0.5em 1em;
 }
 
-.header-img {
+.head-img {
     display: block;
     height: 2em;
 }
 
-.header #logo {
+.head #logo {
     margin: 0 auto;
 }
 
-.header #profile {
-    margin-left: 1em;
+.head #profile {
     border-radius: 2em;
 }
 
-.header #date {
+.head #date {
     float: right;
-    margin-right: 1em;
 }
