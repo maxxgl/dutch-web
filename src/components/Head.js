@@ -12,7 +12,7 @@ export default class Head extends Component {
       <Grid className='head'>
         <Column size='u-1-4'>
           <Link to={{ pathname: '/profile' }}>
-            <img src={girl} alt='logo' className='head-img' id='profile'/>
+            <img src={girl} alt='profile' className='head-img' id='profile'/>
           </Link>
         </Column>
         <Column size='u-1-2'>
@@ -22,7 +22,7 @@ export default class Head extends Component {
         </Column>
         <Column size='u-1-4'>
           <Link to={{ pathname: '/dates' }}>
-            <img src={date} alt='logo' className='head-img' id='date'/>
+            <img src={date} alt='dates' className='head-img' id='date'/>
           </Link>
         </Column>
         </Grid>
