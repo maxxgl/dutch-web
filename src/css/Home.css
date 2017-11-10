@@ -4,8 +4,23 @@ img {
     display: block;
 }
 
+#home-flavor-text {
+    font-size: 1.5em;
+    background-color: #343534;
+    color: white;
+    font-weight: 100;
+    line-height: 1.7;
+    text-align: center;
+}
+
 @media screen and (min-width: 48em) {
     #home-flavor-text {
-        height: 100vh;
+        display: flex;
+        align-items: center;
+        font-size: 2em;
+        height: calc(100vh - 3rem);
+        text-align: left;
+        padding-left: 2%;
+        background-color: #61c5c1;
     }
 }
