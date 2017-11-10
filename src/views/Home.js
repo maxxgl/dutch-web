@@ -4,6 +4,7 @@ import Fullpage from '../components/Fullpage'
 import Head from '../components/Head'
 import { Grid, Column } from '../components/Grid'
 import girl from '../static/girl.jpg'
+import snowGirl from '../static/snow-girl.jpg'
 
 class Home extends Component {
   render() {
@@ -18,7 +19,7 @@ class Home extends Component {
             <img src={girl} alt='girl' />
           </Column>
           <Column size='u-1-2 u-md-1-4'>
-            <img src={girl} alt='girl' />
+            <img src={snowGirl} alt='girl' />
           </Column>
           <Column size='u-1-2 u-md-1-4'>
             <img src={girl} alt='girl' />
