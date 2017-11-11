@@ -7,7 +7,7 @@ export const consumer = (endpoint, method, content) => {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(content)
+    body: content ? JSON.stringify(content) : null
   }).then((response) => response.json())
     .catch((error) => {
       console.error(error)
