@@ -6,6 +6,8 @@ import more from '../static/reschedule_icon.svg'
 import girl from '../static/girl.jpg'
 import snowGirl from '../static/snow-girl.jpg'
 import SZA from '../static/SZA.jpg'
+import shakira from '../static/shakira.jpg'
+import meg from '../static/meg.jpg'
 
 class Home extends Component {
   render() {
@@ -18,8 +20,8 @@ class Home extends Component {
         <img className='home-img' src={girl} alt='girl' />
         <img className='home-img' src={snowGirl} alt='girl' />
         <img className='home-img' src={SZA} alt='girl' />
-        <img className='home-img' src={girl} alt='girl' />
-        <img className='home-img' src={girl} alt='girl' />
+        <img className='home-img' src={shakira} alt='girl' />
+        <img className='home-img' src={meg} alt='girl' />
         <div className='home-img' id='refresh-button'>
           <img id='refresh' src={more} alt='girl' />
         </div>
