@@ -15,7 +15,9 @@ class Start extends Component {
           <Link to='/signup'>
             <Button>Sign Up</Button>
           </Link>
-          <Button>Login</Button>
+          <Link to='/login'>
+            <Button>Login</Button>
+          </Link>
           <div>
            <Button primary>About</Button>
           </div>
