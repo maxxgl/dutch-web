@@ -12,7 +12,7 @@ export const consumer = (endpoint, method, content) => {
   }).then((response) => {
         if (!response.ok) {
           if (response.status === 401) {
-            localStorage.clear()
+            localStorage.removeItem('token')
           }
           throw Error(response.statusText)
         }

@@ -14,6 +14,9 @@ class App extends Component {
   }
 
   render() {
+    if (window.location.hash !== "#/" && !localStorage.getItem('token')) {
+      return window.location = "/"
+    }
     return (
       <Switch>
         <Route exact path="/" component={Start} />
