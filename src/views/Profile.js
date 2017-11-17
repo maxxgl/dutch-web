@@ -17,7 +17,7 @@ export default class Profile extends Component {
   onGet = (name, value) => this.setState({[name]: value})
 
   consume = () => {
-    consumer('user/5a071e94a6224b0e7529241c', 'GET', "")
+    consumer('user/' + localStorage.getItem('userId'), 'GET', "")
       .then((response) => {
         if (response) {
           for (const key in response) {
