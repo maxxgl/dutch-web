@@ -4,7 +4,7 @@ import Fullpage from '../components/Fullpage'
 import Header from '../components/Header'
 import { consumer } from '../utils/consumer'
 
-export default class Profile extends Component {
+export default class Login extends Component {
   constructor(props) {
     super(props)
     this.state = { email: '', password: ''}

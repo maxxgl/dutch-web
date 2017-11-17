@@ -6,6 +6,7 @@ import Profile from './Profile'
 import Dates from './Dates'
 import Signup from './Signup'
 import Signedup from './SignedUp'
+import Login from './Login'
 
 class App extends Component {
   loggedIn() {
@@ -16,6 +17,7 @@ class App extends Component {
     return (
       <Switch>
         <Route exact path="/" component={Start} />
+        <Route path="/login" component={Login} />
         <Route exact path="/home" component={Home} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/dates" component={Dates} />
