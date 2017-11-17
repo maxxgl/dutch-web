@@ -18,7 +18,7 @@ export default class Login extends Component {
     consumer('', 'POST', this.state)
       .then((response) => {
         if (response) {
-          console.log(response)
+          localStorage.setItem('token', response)
         }})
   }
 

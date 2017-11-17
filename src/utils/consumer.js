@@ -6,6 +6,7 @@ export const consumer = (endpoint, method, content) => {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('token')
     },
     body: content ? JSON.stringify(content) : null
   }).then((response) => response.json())
