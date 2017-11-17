@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import '../css/Home.css'
+import { consumer } from '../utils/consumer'
 import Fullpage from '../components/Fullpage'
 import Head from '../components/Head'
 import more from '../static/reschedule_icon.svg'
@@ -10,6 +11,18 @@ import shakira from '../static/shakira.jpg'
 import meg from '../static/meg.jpg'
 
 class Home extends Component {
+  constructor(props) {
+    super(props)
+    this.consume()
+  }
+
+  consume = () => {
+    consumer('user/' + localStorage.getItem('userId') + '/match/', 'GET', "")
+      .then((response) => {
+        if (response) {
+        }})
+  }
+
   render() {
     return (
       <Fullpage>
