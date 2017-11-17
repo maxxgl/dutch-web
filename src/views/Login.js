@@ -18,7 +18,8 @@ export default class Login extends Component {
     consumer('', 'POST', this.state)
       .then((response) => {
         if (response) {
-          localStorage.setItem('token', response)
+          localStorage.setItem('userId', response.userId)
+          localStorage.setItem('token', response.token)
         }})
   }
 
