@@ -9,8 +9,16 @@ export const consumer = (endpoint, method, content) => {
       'Authorization': localStorage.getItem('token')
     },
     body: content ? JSON.stringify(content) : null
-  }).then((response) => response.json())
-    .catch((error) => {
+  }).then((response) => {
+        if (!response.ok) {
+          if (response.status === 401) {
+            localStorage.clear()
+          }
+          throw Error(response.statusText)
+        }
+        return response
+    }).then((response) => response.json()
+    ).catch((error) => {
       console.error(error)
     })
 }
