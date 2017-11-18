@@ -1,4 +1,4 @@
-const api = 'http://localhost:5000/'
+const api = 'https://dutch-backend.herokuapp.com/'
 
 export const consumer = (endpoint, method, content) => {
   return fetch(api + endpoint, {
