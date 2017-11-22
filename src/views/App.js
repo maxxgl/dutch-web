@@ -14,7 +14,9 @@ class App extends Component {
   }
 
   render() {
-    if (window.location.hash !== "#/" && !localStorage.getItem('token')) {
+    let h = window.location.hash
+    if (h !== "#/" && h !== "#/signup" && h !== "#/login" && h !== "#/signedup"
+      && !localStorage.getItem('token')) {
       return window.location.hash = "#/"
     }
     return (
