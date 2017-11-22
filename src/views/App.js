@@ -8,29 +8,27 @@ import Signup from './Signup'
 import Signedup from './SignedUp'
 import Login from './Login'
 
-class App extends Component {
-  loggedIn() {
-    return false
-  }
-
+export default class App extends Component {
   render() {
-    let h = window.location.hash
-    if (h !== "#/" && h !== "#/signup" && h !== "#/login" && h !== "#/signedup"
-      && !localStorage.getItem('token')) {
-      return window.location.hash = "#/"
+    if (!localStorage.getItem('token')) {
+      return (
+        <Switch>
+          <Route exact path="/" component={Start} />
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/signedup" component={Signedup} />
+          <Route path="/" component={Start} />
+        </Switch>
+      )
     }
     return (
       <Switch>
-        <Route exact path="/" component={Start} />
-        <Route path="/login" component={Login} />
+        <Route exact path="/" component={Home} />
         <Route exact path="/home" component={Home} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/dates" component={Dates} />
-        <Route path="/signup" component={Signup} />
-        <Route path="/signedup" component={Signedup} />
+        <Route path="/" component={Home} />
       </Switch>
     )
   }
 }
-
-export default App
