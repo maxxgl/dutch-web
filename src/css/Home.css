@@ -1,7 +1,12 @@
+body::-webkit-scrollbar {
+  display: none;
+}
+
 .home-img {
     width: 50vw;
     height: 50vw;
     float: left;
+    max-width: 100%
 }
 
 #flavor-wrapper {
