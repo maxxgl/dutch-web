@@ -40,6 +40,11 @@ body::-webkit-scrollbar {
     height: 6em;
 }
 
+.prospect-img {
+    width: 12.5%;
+    height: auto;
+}
+
 @media screen and (min-width: 70em) {
     .home-img {
         height: calc((100vh - 3rem)/2);

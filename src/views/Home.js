@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Link } from 'react-router-dom'
 import '../css/Home.css'
 import { consumer } from '../utils/consumer'
 import Fullpage from '../components/Fullpage'
@@ -38,6 +38,14 @@ export default class Home extends Component {
     </div>
   )
 
+  prospect = (props) => {
+    const i = parseInt(props.match.params.number, 10)
+    return this.state.prospects.map((prospect) => (
+      <img className='prospect-img' key={prospect.toString()}
+        src={prospect} alt='' />
+    ))
+  }
+
   render() {
     let day = new Date().toLocaleString('en-us', {  weekday: 'long' })
 
@@ -49,7 +57,7 @@ export default class Home extends Component {
         </div>
         <Switch>
           <Route exact path='/home' component={this.tiles}/>
-          <Route path='/home/:number' component={Prospect}/>
+          <Route path='/home/:number' component={this.prospect} />
         </Switch>
       </Fullpage>
     )
@@ -61,5 +69,3 @@ const Tile = (props) => (
     <img className='home-img' src={props.pic} alt='girl' />
   </div>
 )
-
-const Prospect = () => "thing"
