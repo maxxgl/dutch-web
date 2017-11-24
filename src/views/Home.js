@@ -22,7 +22,6 @@ export default class Home extends Component {
     consumer('user/' + localStorage.getItem('userId') + '/match/', 'GET', "")
       .then((response) => {
         if (response) {
-          console.log(response)
           this.setState({ prospects: response })
         }})
   }
@@ -39,7 +38,7 @@ export default class Home extends Component {
   )
 
   prospect = (props) => {
-    const i = parseInt(props.match.params.number, 10)
+    // const i = parseInt(props.match.params.number, 10)
     return this.state.prospects.map((prospect) => (
       <img className='prospect-img' key={prospect.toString()}
         src={prospect} alt='' />
