@@ -29,8 +29,8 @@ export default class Home extends Component {
 
   tiles = () => (
     <div>
-      {this.state.prospects.map((prospect) => (
-        <Tile key={prospect.toString()} pic={prospect} />
+      {this.state.prospects.map((prospect, index) => (
+        <Tile key={index} pic={prospect} index={index} />
       ))}
       <div className='home-tile' id='refresh-button'>
         <img id='refresh' src={more} alt='refresh' />
@@ -65,7 +65,7 @@ export default class Home extends Component {
 }
 
 const Tile = (props) => (
-  <div className='home-tile'>
+  <Link to={'/home/' + props.index} className='home-tile' >
     <img className='home-img' src={props.pic} alt='girl' />
-  </div>
+  </Link>
 )
