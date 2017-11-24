@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Switch, Route } from 'react-router-dom'
 import '../css/Home.css'
 import { consumer } from '../utils/consumer'
 import Fullpage from '../components/Fullpage'
@@ -26,10 +27,19 @@ export default class Home extends Component {
         }})
   }
 
+  tiles = () => (
+    <div>
+      {this.state.prospects.map((prospect) => (
+        <Tile key={prospect.toString()} pic={prospect} />
+      ))}
+      <div className='home-tile' id='refresh-button'>
+        <img id='refresh' src={more} alt='refresh' />
+      </div>
+    </div>
+  )
+
   render() {
     let day = new Date().toLocaleString('en-us', {  weekday: 'long' })
-    let tiles = this.state.prospects.map((prospect) =>
-      (<HomeTile key={prospect.toString()} pic={prospect} />))
 
     return (
       <Fullpage>
@@ -37,17 +47,19 @@ export default class Home extends Component {
         <div id='flavor-wrapper'>
           <div id='home-flavor-text'>Matches for {day}</div>
         </div>
-        {tiles}
-        <div className='home-tile' id='refresh-button'>
-          <img id='refresh' src={more} alt='refresh' />
-        </div>
+        <Switch>
+          <Route exact path='/home' component={this.tiles}/>
+          <Route path='/home/:number' component={Prospect}/>
+        </Switch>
       </Fullpage>
     )
   }
 }
 
-const HomeTile = (props) => (
+const Tile = (props) => (
   <div className='home-tile'>
     <img className='home-img' src={props.pic} alt='girl' />
   </div>
 )
+
+const Prospect = () => "thing"

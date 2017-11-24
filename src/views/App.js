@@ -26,7 +26,7 @@ export default class App extends Component {
     return (
       <Switch>
         <Route exact path="/" component={() => (<Redirect to ="/home" />)} />
-        <Route exact path="/home" component={Home} />
+        <Route path="/home" component={Home} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/dates" component={Dates} />
         <Route path="/" component={this.redirecter} />
