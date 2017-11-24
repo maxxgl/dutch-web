@@ -5,14 +5,13 @@ body::-webkit-scrollbar {
 .home-img {
     width: 100%;
     height: 100%;
-    display: inline-block;
 }
 
 .home-tile {
     width: 50vw;
     height: 50vw;
     float: left;
-    max-width: 100%
+    max-width: 100%;
 }
 
 #flavor-wrapper {
