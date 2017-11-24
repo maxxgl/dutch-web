@@ -13,6 +13,7 @@ import meg from '../static/meg.jpg'
 export default class Home extends Component {
   constructor(props) {
     super(props)
+    this.state = { prospects: [girl, snowGirl, SZA, shakira, meg] }
     this.consume()
   }
 
@@ -21,26 +22,32 @@ export default class Home extends Component {
       .then((response) => {
         if (response) {
           console.log(response)
+          this.setState({ prospects: response })
         }})
   }
 
   render() {
     let day = new Date().toLocaleString('en-us', {  weekday: 'long' })
+    let tiles = this.state.prospects.map((prospect) =>
+      (<HomeTile key={prospect.toString()} pic={prospect} />))
+
     return (
       <Fullpage>
         <Head />
         <div id='flavor-wrapper'>
           <div id='home-flavor-text'>Matches for {day}</div>
         </div>
-        <img className='home-img' src={girl} alt='girl' />
-        <img className='home-img' src={snowGirl} alt='girl' />
-        <img className='home-img' src={SZA} alt='girl' />
-        <img className='home-img' src={shakira} alt='girl' />
-        <img className='home-img' src={meg} alt='girl' />
-        <div className='home-img' id='refresh-button'>
+        {tiles}
+        <div className='home-tile' id='refresh-button'>
           <img id='refresh' src={more} alt='refresh' />
         </div>
       </Fullpage>
     )
   }
 }
+
+const HomeTile = (props) => (
+  <div className='home-tile'>
+    <img className='home-img' src={props.pic} alt='girl' />
+  </div>
+)
