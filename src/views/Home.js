@@ -20,7 +20,8 @@ export default class Home extends Component {
     const SZAObj = [SZA, girl, snow, SZA, sha, meg]
     const shaObj = [sha, girl, snow, SZA, sha, meg]
     const megObj = [meg, girl, snow, SZA, sha, meg]
-    this.state = { prospects: [ girlObj, snowObj, SZAObj, shaObj, megObj ] }
+    this.state = { prospects: [ girlObj, snowObj, SZAObj, shaObj, megObj ],
+                   remove: [0, 0, 0, 0, 0] }
     this.consume()
   }
 
@@ -30,6 +31,13 @@ export default class Home extends Component {
         if (response) {
           this.setState({ prospects: response })
         }})
+  }
+
+  onCancel = (i) => {
+    let newRemove = this.state.remove
+    newRemove[i] = 1
+    this.setState({ remove: newRemove })
+    window.location.hash = '#/home'
   }
 
   tiles = () => (
@@ -49,7 +57,8 @@ export default class Home extends Component {
     if (!(i >= 0 && i < 5) || !(j >= 0 && j < this.state.prospects[i].length)) {
       return <Redirect to='/home' />
     }
-    return <Person pics={this.state.prospects[i]} prospect={i} pic={j}/>
+    return <Person pics={this.state.prospects[i]} prospect={i} pic={j}
+      cancel={this.onCancel} />
   }
 
   render() {
