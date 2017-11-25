@@ -6,15 +6,20 @@ import Fullpage from '../components/Fullpage'
 import Head from '../components/Head'
 import more from '../static/reschedule_icon.svg'
 import girl from '../static/girl.jpg'
-import snowGirl from '../static/snow-girl.jpg'
+import snow from '../static/snow-girl.jpg'
 import SZA from '../static/SZA.jpg'
-import shakira from '../static/shakira.jpg'
+import sha from '../static/shakira.jpg'
 import meg from '../static/meg.jpg'
 
 export default class Home extends Component {
   constructor(props) {
     super(props)
-    this.state = { prospects: [girl, snowGirl, SZA, shakira, meg] }
+    const girlObj = [girl, girl, girl, girl, girl, girl, girl, girl]
+    const snowObj = [snow, snow, snow, snow, snow, snow, snow, snow]
+    const SZAObj = [SZA, SZA, SZA, SZA, SZA, SZA, SZA, SZA]
+    const shaObj = [sha, sha, sha, sha, sha, sha, sha, sha]
+    const megObj = [meg, meg, meg, meg, meg, meg, meg, meg]
+    this.state = { prospects: [ girlObj, snowObj, SZAObj, shaObj, megObj ] }
     this.consume()
   }
 
@@ -29,7 +34,7 @@ export default class Home extends Component {
   tiles = () => (
     <div>
       {this.state.prospects.map((prospect, index) => (
-        <Tile key={index} pic={prospect} index={index} />
+        <Tile key={index} pic={prospect[0]} index={index} />
       ))}
       <div className='home-tile' id='refresh-button'>
         <img id='refresh' src={more} alt='refresh' />
@@ -38,10 +43,9 @@ export default class Home extends Component {
   )
 
   prospect = (props) => {
-    // const i = parseInt(props.match.params.number, 10)
-    return this.state.prospects.map((prospect) => (
-      <img className='prospect-img' key={prospect.toString()}
-        src={prospect} alt='' />
+    const i = parseInt(props.match.params.number, 10)
+    return this.state.prospects[i].map((prospect, index) => (
+      <img className='prospect-img' key={index} src={prospect} alt='person' />
     ))
   }
 
