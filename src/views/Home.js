@@ -46,10 +46,10 @@ export default class Home extends Component {
   prospect = (props) => {
     const i = parseInt(props.match.params.number, 10)
     const j = parseInt(props.match.params.pic, 10)
-    if (!(i >= 0 && i < 5) || !(j >= 0 && j < this.state.prospects[i].length) ) {
+    if (!(i >= 0 && i < 5) || !(j >= 0 && j < this.state.prospects[i].length)) {
       return <Redirect to='/home' />
     }
-    return <Person pics={this.state.prospects[i]} prospect={i} />
+    return <Person pics={this.state.prospects[i]} prospect={i} pic={j}/>
   }
 
   render() {

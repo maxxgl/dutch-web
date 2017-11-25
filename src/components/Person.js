@@ -4,16 +4,12 @@ import circle from '../static/circle.svg'
 import circleGreen from '../static/circle_green.svg'
 
 export default class Home extends Component {
-  prospect = (props) => {
-      const i = parseInt(props.match.params.pic, 10)
-      return <img className='home-img' src={this.props.pics[i]} alt='person' />
-    }
-
   render() {
     return (
       <div className={'circle-column'}>
+        <img className='home-img' src={this.props.pics[this.props.pic]} alt='person' />
         <Circles pageCount={this.props.pics.length}
-          base={'/home/0/'} />
+          base={'/home/' + this.props.prospect + '/'} />
       </div>
     )
   }
