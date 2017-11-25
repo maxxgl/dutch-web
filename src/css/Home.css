@@ -4,7 +4,8 @@ body::-webkit-scrollbar {
 
 .home-img {
     width: 100%;
-    height: 100%;
+    height: auto;
+    display: block;
 }
 
 .home-tile {
@@ -38,11 +39,6 @@ body::-webkit-scrollbar {
 
 #refresh {
     height: 6em;
-}
-
-.prospect-img {
-    width: 12.5%;
-    height: auto;
 }
 
 @media screen and (min-width: 70em) {

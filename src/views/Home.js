@@ -46,7 +46,7 @@ export default class Home extends Component {
     const i = parseInt(props.match.params.number, 10)
     if (!(i >= 0 && i < 5)) return <Redirect to='/home' />
     return this.state.prospects[i].map((prospect, index) => (
-      <img className='prospect-img' key={index} src={prospect} alt='person' />
+      <img className='home-img' key={index} src={prospect} alt='person' />
     ))
   }
 
