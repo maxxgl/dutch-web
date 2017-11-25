@@ -15,11 +15,11 @@ import meg from '../static/meg.jpg'
 export default class Home extends Component {
   constructor(props) {
     super(props)
-    const girlObj = [girl, girl, girl, girl, girl, girl, girl, girl]
-    const snowObj = [snow, snow, snow, snow, snow, snow, snow, snow]
-    const SZAObj = [SZA, SZA, SZA, SZA, SZA, SZA, SZA, SZA]
-    const shaObj = [sha, sha, sha, sha, sha, sha, sha, sha]
-    const megObj = [meg, meg, meg, meg, meg, meg, meg, meg]
+    const girlObj = [girl, girl, snow, SZA, sha, meg]
+    const snowObj = [snow, girl, snow, SZA, sha, meg]
+    const SZAObj = [SZA, girl, snow, SZA, sha, meg]
+    const shaObj = [sha, girl, snow, SZA, sha, meg]
+    const megObj = [meg, girl, snow, SZA, sha, meg]
     this.state = { prospects: [ girlObj, snowObj, SZAObj, shaObj, megObj ] }
     this.consume()
   }
