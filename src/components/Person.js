@@ -8,7 +8,7 @@ export default class Home extends Component {
     return (
       <div className={'circle-column'}>
         <img className='home-img' src={this.props.pics[this.props.pic]} alt='person' />
-        <Circles pageCount={this.props.pics.length}
+        <Circles pageCount={this.props.pics.length} page={this.props.pic}
           base={'/home/' + this.props.prospect + '/'} />
       </div>
     )
