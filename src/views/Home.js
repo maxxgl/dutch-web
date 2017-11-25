@@ -43,7 +43,8 @@ export default class Home extends Component {
   tiles = () => (
     <div>
       {this.state.prospects.map((prospect, index) => (
-        <Tile key={index} pic={prospect[0]} index={index} />
+        <Tile key={index} pic={prospect[0]} index={index}
+          remove={this.state.remove[index]} />
       ))}
       <div className='home-tile' id='refresh-button'>
         <img id='refresh' src={more} alt='refresh' />
@@ -83,6 +84,7 @@ export default class Home extends Component {
 
 const Tile = (props) => (
   <Link to={'/home/' + props.index + '/0'} className='home-tile' >
-    <img className='home-img' src={props.pic} alt='girl' />
+    <img className={'home-img' + (props.remove ? ' remove' : '')}
+      src={props.pic} alt='girl' />
   </Link>
 )

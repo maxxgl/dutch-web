@@ -41,6 +41,10 @@ body::-webkit-scrollbar {
     height: 6em;
 }
 
+.remove {
+    filter: grayscale(100%);
+}
+
 @media screen and (min-width: 70em) {
     .home-img {
         height: calc((100vh - 3rem)/2);
