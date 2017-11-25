@@ -33,6 +33,15 @@ export default class Home extends Component {
         }})
   }
 
+  shuffle = () => {
+    let ids = []
+    for (var i = 0; i < 5; i++) {
+      if (this.state.remove[i]) ids.push(this.state.prospects[i].match)
+    }
+    consumer('user/' + localStorage.getItem('userId') + '/match/', 'DELETE', ids)
+    this.consume()
+  }
+
   onCancel = (i) => {
     let newRemove = this.state.remove
     newRemove[i] = 1
@@ -47,7 +56,7 @@ export default class Home extends Component {
           remove={this.state.remove[index]} />
       ))}
       <div className='home-tile' id='refresh-button'>
-        <img id='refresh' src={more} alt='refresh' />
+        <img id='refresh' src={more} onClick={this.shuffle} alt='refresh' />
       </div>
     </div>
   )
