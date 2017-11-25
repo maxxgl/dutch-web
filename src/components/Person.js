@@ -12,9 +12,11 @@ export default class Home extends Component {
     return (
       <div>
         <Switch>
+          <Route exact path='/home/:number/:pic' component={this.prospect} />
           <Route exact path='/home/:number' component={this.prospect} />
         </Switch>
-        <Circles pageCount={this.props.pics.length}/>
+        <Circles pageCount={this.props.pics.length}
+          base={'/home/' + this.props.prospect + '/'} />
       </div>
     )
   }
@@ -25,12 +27,9 @@ const Circles = (props) => {
   for (var i = 0; i < props.pageCount; i++) {
     let circleType = i === props.page ? circleGreen : circle
     circles.push(
-      <img
-        key={i}
-        src={circleType}
-        alt='circle'
-        className='circle'
-      />
+      <Link to={props.base + i} key={i}>
+        <img src={circleType} alt='circle' className='circle' />
+      </Link>
     )
   }
   return circles
