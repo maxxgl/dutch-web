@@ -3,6 +3,7 @@ import { Switch, Route, Link, Redirect } from 'react-router-dom'
 import '../css/Home.css'
 import { consumer } from '../utils/consumer'
 import Fullpage from '../components/Fullpage'
+import Person from '../components/Person'
 import Head from '../components/Head'
 import more from '../static/reschedule_icon.svg'
 import girl from '../static/girl.jpg'
@@ -45,9 +46,7 @@ export default class Home extends Component {
   prospect = (props) => {
     const i = parseInt(props.match.params.number, 10)
     if (!(i >= 0 && i < 5)) return <Redirect to='/home' />
-    return this.state.prospects[i].map((prospect, index) => (
-      <img className='home-img' key={index} src={prospect} alt='person' />
-    ))
+    return <Person pics={this.state.prospects[i]} />
   }
 
   render() {
