@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Switch, Route, Link } from 'react-router-dom'
+import { Switch, Route, Link, Redirect } from 'react-router-dom'
 import '../css/Home.css'
 import { consumer } from '../utils/consumer'
 import Fullpage from '../components/Fullpage'
@@ -44,6 +44,7 @@ export default class Home extends Component {
 
   prospect = (props) => {
     const i = parseInt(props.match.params.number, 10)
+    if (i < 0 || i > 4 || isNaN(i) ) return <Redirect to='/home' />
     return this.state.prospects[i].map((prospect, index) => (
       <img className='prospect-img' key={index} src={prospect} alt='person' />
     ))
