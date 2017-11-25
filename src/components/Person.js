@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import '../css/Person.css'
 import circle from '../static/circle.svg'
 import circleGreen from '../static/circle_green.svg'
+import cancel from '../static/cancel_icon_white.svg'
 
 export default class Home extends Component {
   render() {
@@ -10,6 +12,9 @@ export default class Home extends Component {
         <img className='home-img' src={this.props.pics[this.props.pic]} alt='person' />
         <Circles pageCount={this.props.pics.length} page={this.props.pic}
           base={'/home/' + this.props.prospect + '/'} />
+        <div className={'cancel-wrapper'}>
+          <img className='cancel' src={cancel} alt='canel' />
+        </div>
       </div>
     )
   }
