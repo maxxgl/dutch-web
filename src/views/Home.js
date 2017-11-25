@@ -39,7 +39,11 @@ export default class Home extends Component {
       if (this.state.remove[i]) ids.push(this.state.prospects[i].match)
     }
     consumer('user/' + localStorage.getItem('userId') + '/match/', 'DELETE', ids)
-    this.consume()
+      .then((response) => {
+        if (response) {
+          this.setState({ remove: [0, 0, 0, 0, 0] })
+          this.consume()
+        }})
   }
 
   onCancel = (i) => {
