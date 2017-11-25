@@ -1,25 +1,19 @@
 import React, { Component } from 'react'
-import { Switch, Route, Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import circle from '../static/circle.svg'
 import circleGreen from '../static/circle_green.svg'
 
 export default class Home extends Component {
   prospect = (props) => {
       const i = parseInt(props.match.params.pic, 10)
-      if (!(i >= 0 && i < this.props.pics.length)) return <Redirect to='/home' />
       return <img className='home-img' src={this.props.pics[i]} alt='person' />
     }
 
   render() {
     return (
-      <div>
-        <Switch>
-          <Route exact path='/home/:number' component={() => (
-            <Redirect to={'/home/' + this.props.prospect + '/0'} />)} />
-          <Route exact path='/home/:number/:pic' component={this.prospect} />
-        </Switch>
+      <div className={'circle-column'}>
         <Circles pageCount={this.props.pics.length}
-          base={'/home/' + this.props.prospect + '/'} />
+          base={'/home/0/'} />
       </div>
     )
   }

@@ -45,8 +45,11 @@ export default class Home extends Component {
 
   prospect = (props) => {
     const i = parseInt(props.match.params.number, 10)
-    if (!(i >= 0 && i < 5)) return <Redirect to='/home' />
-    return <Person pics={this.state.prospects[i]} prospect={i}/>
+    const j = parseInt(props.match.params.pic, 10)
+    if (!(i >= 0 && i < 5) || !(j >= 0 && j < this.state.prospects[i].length) ) {
+      return <Redirect to='/home' />
+    }
+    return <Person pics={this.state.prospects[i]} prospect={i} />
   }
 
   render() {
@@ -60,7 +63,9 @@ export default class Home extends Component {
         </div>
         <Switch>
           <Route exact path='/home' component={this.tiles}/>
-          <Route path='/home/:number' component={this.prospect} />
+          <Route exact path='/home/:number' component={(props) => (
+            <Redirect to={'/home/' + props.match.params.number + '/0'} />)} />
+          <Route exact path='/home/:number/:pic' component={this.prospect} />
         </Switch>
       </Fullpage>
     )
@@ -68,7 +73,7 @@ export default class Home extends Component {
 }
 
 const Tile = (props) => (
-  <Link to={'/home/' + props.index} className='home-tile' >
+  <Link to={'/home/' + props.index + '/0'} className='home-tile' >
     <img className='home-img' src={props.pic} alt='girl' />
   </Link>
 )
