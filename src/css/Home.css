@@ -42,7 +42,7 @@ body::-webkit-scrollbar {
 }
 
 .remove {
-    filter: grayscale(100%);
+    filter: grayscale(100%) contrast(175%) brightness(70%);
 }
 
 @media screen and (min-width: 70em) {
