@@ -6,7 +6,7 @@ import circleGreen from '../static/circle_green.svg'
 export default class Home extends Component {
   prospect = (props) => {
       const i = parseInt(props.match.params.pic, 10)
-      if (!(i >= 0 && i < 5)) return <Redirect to='/home' />
+      if (!(i >= 0 && i < this.props.pics.length)) return <Redirect to='/home' />
       return <img className='home-img' src={this.props.pics[i]} alt='person' />
     }
 
@@ -14,8 +14,9 @@ export default class Home extends Component {
     return (
       <div>
         <Switch>
+          <Route exact path='/home/:number' component={() => (
+            <Redirect to={'/home/' + this.props.prospect + '/0'} />)} />
           <Route exact path='/home/:number/:pic' component={this.prospect} />
-          <Route exact path='/home/:number' component={this.prospect} />
         </Switch>
         <Circles pageCount={this.props.pics.length}
           base={'/home/' + this.props.prospect + '/'} />
