@@ -46,9 +46,10 @@ body::-webkit-scrollbar {
 }
 
 @media screen and (min-width: 70em) {
-    .home-img {
+    .home-tile {
         height: calc((100vh - 3rem)/2);
         width: calc((100vh - 3rem)/2);
+        float: left;
     }
 
     #flavor-wrapper {
