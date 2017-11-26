@@ -53,8 +53,12 @@ export default class Home extends Component {
     window.location.hash = '#/home'
   }
 
+  day = new Date().toLocaleString('en-us', {  weekday: 'long' })
   tiles = () => (
     <div>
+      <div id='flavor-wrapper'>
+          <div id='home-flavor-text'>Matches for {this.day}</div>
+      </div>
       {this.state.prospects.map((prospect, index) => (
         <Tile key={index} pic={prospect[0]} index={index}
           remove={this.state.remove[index]} />
@@ -76,14 +80,9 @@ export default class Home extends Component {
   }
 
   render() {
-    let day = new Date().toLocaleString('en-us', {  weekday: 'long' })
-
     return (
       <Fullpage>
         <Head />
-        <div id='flavor-wrapper'>
-          <div id='home-flavor-text'>Matches for {day}</div>
-        </div>
         <Switch>
           <Route exact path='/home' component={this.tiles}/>
           <Route exact path='/home/:number' component={(props) => (
