@@ -8,3 +8,8 @@
     width: 25%;
     height: auto;
 }
+
+.circle-column {
+    max-width: 28em;
+    margin: 0 auto;
+}

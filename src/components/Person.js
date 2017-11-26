@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import '../css/Person.css'
+import { Link } from 'react-router-dom'
 import circle from '../static/circle.svg'
 import circleGreen from '../static/circle_green.svg'
 import cancel from '../static/cancel_icon_white.svg'
