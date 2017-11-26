@@ -29,7 +29,7 @@ export default class Home extends Component {
     consumer('user/' + localStorage.getItem('userId') + '/match/', 'GET', "")
       .then((response) => {
         if (response) {
-          this.setState({ prospects: response })
+          // this.setState({ prospects: response })
         }})
   }
 
