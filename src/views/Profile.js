@@ -33,13 +33,16 @@ export default class Profile extends Component {
         <div>
           <img className='home-img' src={girl} alt='girl' />
           <Header>{this.state.firstName} {this.state.lastName}</Header>
+          <div>
+            I am a {this.state.age} year old {this.state.gender} seeking 
+            a {this.state.seeking}
+          </div>
+          <div>
+            between {this.state.youngest} and {this.state.oldest} years old
+          </div>
           <div>Within {this.state.range} miles of {this.state.zip}</div>
-          <div>{this.state.likes}</div>
-          <Header>{this.state.budget}</Header>
-          <Header>{this.state.gender}</Header>
-          <Header>{this.state.seeking}</Header>
-          <Header>{this.state.age}</Header>
-          <Header>{this.state.youngest}, {this.state.oldest}</Header>
+          <div>I like{this.state.likes}</div>
+          <div>I'm willing to spend ${this.state.budget} on a date.</div>
         </div>
       </Fullpage>
     )
