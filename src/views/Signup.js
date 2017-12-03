@@ -162,7 +162,7 @@ const Pictures = (props) => (
 
 const upload = (files) => {
   const preset = 'sxeg1qhp'
-  const url = 'http://res.cloudinary.com/dutch-pictures'
+  const url = 'https://api.cloudinary.com/v1_1/dutch-pictures/upload'
   let upload = request.post(url)
                       .field('upload_preset', preset)
                       .field('file', files[0])
