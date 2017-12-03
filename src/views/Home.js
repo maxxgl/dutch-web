@@ -25,7 +25,7 @@ export default class Home extends Component {
   shuffle = () => {
     let ids = []
     for (var i = 0; i < 5; i++) {
-      if (this.state.remove[i]) ids.push(this.state.prospects[i].match)
+      if (this.state.remove[i]) ids.push(this.state.prospects[i]._id)
     }
     consumer('user/' + localStorage.getItem('userId') + '/match/',
       'DELETE', { ids: ids })
