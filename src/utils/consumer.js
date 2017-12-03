@@ -15,10 +15,10 @@ export const consumer = (endpoint, method, content) => {
             localStorage.removeItem('token')
             window.location.reload()
           }
-          throw Error(response.statusText)
+          throw new Error(response.statusText)
         }
         return response
-    }).then((response) => response.json()
+    }).then((response) => response.status === 204 ? true : response.json() 
     ).catch((error) => {
       console.error(error)
     })
