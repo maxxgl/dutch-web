@@ -3,7 +3,6 @@ import '../css/Head.css'
 import { Link } from 'react-router-dom'
 import logo from '../static/logotype_white.svg'
 import { Grid, Column } from '../components/Grid'
-import girl from '../static/girl.jpg'
 import date from '../static/date_icon.svg'
 
 export default class Head extends Component {
@@ -12,7 +11,8 @@ export default class Head extends Component {
       <Grid className='head'>
         <Column size='u-1-4'>
           <Link to={{ pathname: '/profile' }}>
-            <img src={girl} alt='profile' className='head-img' id='profile'/>
+            <img src={localStorage.getItem('profilePic')}
+            alt='profile' className='head-img' id='profile'/>
           </Link>
         </Column>
         <Column size='u-1-2'>
