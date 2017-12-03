@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import '../css/Signup.css'
 import Fullpage from '../components/Fullpage'
+import Dropzone from 'react-dropzone';
+import request from 'superagent';
 import logo from '../static/logotype_green.svg'
 import next from '../static/next_icon.svg'
 import circle from '../static/circle.svg'
@@ -51,15 +53,16 @@ export default class Signup extends Component {
   pages = (props) => {
     return [
       <Email key={1} change={this.onChange} pager={this.nextPage} />,
-      <Location key={2} change={this.onChange} pager={this.nextPage} />,
-      <Traits key={3} change={this.onChange} traits={this.state.likes}
+      <Pictures key={2} change={this.onChange} pager={this.nextPage} />,
+      <Location key={3} change={this.onChange} pager={this.nextPage} />,
+      <Traits key={4} change={this.onChange} traits={this.state.likes}
         newTrait={this.newTrait} pager={this.nextPage} />,
-      <Money key={4} change={this.onChange} pager={this.nextPage} />,
-      <Gender key={5} change={this.onChange} setGender={this.setGender}
+      <Money key={5} change={this.onChange} pager={this.nextPage} />,
+      <Gender key={6} change={this.onChange} setGender={this.setGender}
         setSeeking={this.setSeeking} gender={this.state.gender}
         seeking={this.state.seeking} pager={this.nextPage} />,
-      <Age key={6} change={this.onChange} pager={this.nextPage} />,
-      <Submit key={7} info={this.state} consume={this.consume} />
+      <Age key={7} change={this.onChange} pager={this.nextPage} />,
+      <Submit key={8} info={this.state} consume={this.consume} />
     ]
   }
 
@@ -137,6 +140,21 @@ const Email = (props) => (
     <div>
       <Header>What is your email address?</Header>
       <div>So we can provide you the best experience we will ask to you log into your email, this way we can get an idea of your schedule.</div>
+    </div>
+  </SignupContent>
+)
+
+const Pictures = (props) => (
+  <SignupContent pager={props.pager}>
+    <div>
+      <Dropzone
+        multiple={false}
+        accept="image/jpg,image/png">
+        <p>Drop an image or click to select a file to upload.</p>
+      </Dropzone>
+    </div>
+    <div>
+      <Header>Upload 10 pictures of yourself.</Header>
     </div>
   </SignupContent>
 )
