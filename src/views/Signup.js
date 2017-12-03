@@ -175,7 +175,7 @@ const upload = (file, pics, change) => {
     }
 
     if (response.body.secure_url !== '') {
-      change({ pictures: pics.concat(response.body.secure_url) })
+      change(pics.concat(response.body.secure_url))
     }
   })
 }
