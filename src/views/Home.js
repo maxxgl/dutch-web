@@ -27,7 +27,8 @@ export default class Home extends Component {
     for (var i = 0; i < 5; i++) {
       if (this.state.remove[i]) ids.push(this.state.prospects[i].match)
     }
-    consumer('user/' + localStorage.getItem('userId') + '/match/', 'DELETE', ids)
+    consumer('user/' + localStorage.getItem('userId') + '/match/',
+      'DELETE', { ids: ids })
       .then((response) => {
         if (response) {
           this.setState({ remove: [0, 0, 0, 0, 0] })
