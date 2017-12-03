@@ -49,7 +49,7 @@ export default class Home extends Component {
           <div id='home-flavor-text'>Matches for {this.day}</div>
       </div>
       {this.state.prospects.map((prospect, index) => (
-        <Tile key={index} pic={prospect.pictures} index={index}
+        <Tile key={index} pic={prospect.pics[0]} index={index}
           remove={this.state.remove[index]} />
       ))}
       <div className='home-tile' id='refresh-button'>
@@ -61,10 +61,11 @@ export default class Home extends Component {
   prospect = (props) => {
     const i = parseInt(props.match.params.number, 10)
     const j = parseInt(props.match.params.pic, 10)
-    if (!(i >= 0 && i < 5) || !(j >= 0 && j < this.state.prospects[i].length)) {
+    const picLength = this.state.prospects[i].pics.length
+    if (!(i >= 0 && i < 5) || !(j >= 0 && j < picLength)) {
       return <Redirect to='/home' />
     }
-    return <Person pics={this.state.prospects[i]} prospect={i} pic={j}
+    return <Person pics={this.state.prospects[i].pics} prospect={i} pic={j}
       cancel={this.onCancel} />
   }
 
