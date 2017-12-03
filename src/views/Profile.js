@@ -3,7 +3,6 @@ import '../css/Profile.css'
 import Fullpage from '../components/Fullpage'
 import Head from '../components/Head'
 import Header from '../components/Header'
-import girl from '../static/girl.jpg'
 import { consumer } from '../utils/consumer'
 
 export default class Profile extends Component {
@@ -27,11 +26,12 @@ export default class Profile extends Component {
   }
 
   render() {
+    const pic = localStorage.getItem('profilePic')
     return (
       <Fullpage>
         <Head />
         <div>
-          <img className='home-img' src={girl} alt='girl' />
+          <img className='home-img' src={pic} alt='girl' />
           <Header>{this.state.firstName} {this.state.lastName}</Header>
           <div>
             I am a {this.state.age} year old {this.state.gender} seeking 
