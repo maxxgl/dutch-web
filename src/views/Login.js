@@ -20,6 +20,7 @@ export default class Login extends Component {
         if (response) {
           localStorage.setItem('userId', response.userId)
           localStorage.setItem('token', response.token)
+          localStorage.setItem('profilePic', response.pic)
           this.setState({ email: '', password: '' })
           window.location.reload()
         }})
