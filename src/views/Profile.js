@@ -4,6 +4,7 @@ import Fullpage from '../components/Fullpage'
 import Head from '../components/Head'
 import Header from '../components/Header'
 import { consumer } from '../utils/consumer'
+import Button from '../components/Button'
 
 export default class Profile extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ export default class Profile extends Component {
       <Fullpage>
         <Head />
         <div>
-          <img className='home-img' src={pic} alt='girl' />
+          <img className='home-img' src={pic} alt='profile picture' />
           <Header>{this.state.firstName} {this.state.lastName}</Header>
           <div>
             I am a {this.state.age} year old {this.state.gender} seeking 
@@ -44,6 +45,12 @@ export default class Profile extends Component {
           <div>I like{this.state.likes}</div>
           <div>I'm willing to spend ${this.state.budget} on a date.</div>
         </div>
+        <Button primary click={() => {
+            localStorage.clear()
+            window.location.reload()
+          }}>
+          Log Out
+        </Button>
       </Fullpage>
     )
   }
