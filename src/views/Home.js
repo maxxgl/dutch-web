@@ -6,22 +6,11 @@ import Fullpage from '../components/Fullpage'
 import Person from '../components/Person'
 import Head from '../components/Head'
 import more from '../static/reschedule_icon.svg'
-import girl from '../static/girl.jpg'
-import snow from '../static/snow-girl.jpg'
-import SZA from '../static/SZA.jpg'
-import sha from '../static/shakira.jpg'
-import meg from '../static/meg.jpg'
 
 export default class Home extends Component {
   constructor(props) {
     super(props)
-    const girlObj = [girl, girl, snow, SZA, sha, meg]
-    const snowObj = [snow, girl, snow, SZA, sha, meg]
-    const SZAObj = [SZA, girl, snow, SZA, sha, meg]
-    const shaObj = [sha, girl, snow, SZA, sha, meg]
-    const megObj = [meg, girl, snow, SZA, sha, meg]
-    this.state = { prospects: [ girlObj, snowObj, SZAObj, shaObj, megObj ],
-                   remove: [0, 0, 0, 0, 0] }
+    this.state = { prospects: [], remove: [0, 0, 0, 0, 0] }
     this.consume()
   }
 
@@ -29,7 +18,7 @@ export default class Home extends Component {
     consumer('user/' + localStorage.getItem('userId') + '/match/', 'GET', "")
       .then((response) => {
         if (response) {
-          // this.setState({ prospects: response })
+          this.setState({ prospects: response })
         }})
   }
 
@@ -60,7 +49,7 @@ export default class Home extends Component {
           <div id='home-flavor-text'>Matches for {this.day}</div>
       </div>
       {this.state.prospects.map((prospect, index) => (
-        <Tile key={index} pic={prospect[0]} index={index}
+        <Tile key={index} pic={prospect.pictures} index={index}
           remove={this.state.remove[index]} />
       ))}
       <div className='home-tile' id='refresh-button'>
