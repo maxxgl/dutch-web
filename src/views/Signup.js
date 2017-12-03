@@ -155,6 +155,9 @@ const Pictures = (props) => (
         onDrop={(files) => upload(files[0], props.pics, props.change)}>
         <p>Drop an image or click to select a file to upload.</p>
       </Dropzone>
+      <div className='upload-pics-wrapper' >{props.pics.map((item, i) => (
+        <img key={i} src={item} alt='upload' className='upload-pic'/>
+      ))}</div>
     </div>
     <div>
       <Header>Upload 10 pictures of yourself.</Header>

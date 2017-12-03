@@ -51,3 +51,8 @@
     height: 50vh;
     background-color: #61c5c1;
 }
+
+.upload-pic {
+    display: inline-block;
+    width: 20%;
+}
