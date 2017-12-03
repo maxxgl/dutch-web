@@ -22,8 +22,8 @@ export default class Signup extends Component {
   constructor(props) {
     super(props)
     this.state = { page: 0, firstName: '', lastName: '', email: '',
-      password: '', range: '25', zip: '', likes: [], budget: 0, gender: '',
-      seeking: '', age: 0, youngest: 0, oldest: 0, submitted: 0 }
+      password: '', pictures: [], range: '25', zip: '', likes: [], budget: 0,
+      gender: '', seeking: '', age: 0, youngest: 0, oldest: 0, submitted: 0 }
     this.pages()
   }
 
@@ -41,6 +41,7 @@ export default class Signup extends Component {
 
   setGender = (e) => this.setState({gender: e.target.id})
   setSeeking = (e) => this.setState({seeking: e.target.id})
+  setPictures = (pics) => this.setState({pictures: pics})
 
   consume = () => {
     consumer('user/', 'POST', this.state)
@@ -53,7 +54,8 @@ export default class Signup extends Component {
   pages = (props) => {
     return [
       <Email key={1} change={this.onChange} pager={this.nextPage} />,
-      <Pictures key={2} change={this.onChange} pager={this.nextPage} />,
+      <Pictures key={2} change={this.setPictures} pager={this.nextPage}
+        pics={this.state.pictures} />,
       <Location key={3} change={this.onChange} pager={this.nextPage} />,
       <Traits key={4} change={this.onChange} traits={this.state.likes}
         newTrait={this.newTrait} pager={this.nextPage} />,
@@ -150,7 +152,7 @@ const Pictures = (props) => (
       <Dropzone
         multiple={false}
         accept="image/png,image/jpeg"
-        onDrop={upload}>
+        onDrop={(files) => upload(files[0], props.pics, props.change)}>
         <p>Drop an image or click to select a file to upload.</p>
       </Dropzone>
     </div>
@@ -160,12 +162,12 @@ const Pictures = (props) => (
   </SignupContent>
 )
 
-const upload = (files) => {
+const upload = (file, pics, change) => {
   const preset = 'sxeg1qhp'
   const url = 'https://api.cloudinary.com/v1_1/dutch-pictures/upload'
   let upload = request.post(url)
                       .field('upload_preset', preset)
-                      .field('file', files[0])
+                      .field('file', file)
 
   upload.end((err, response) => {
     if (err) {
@@ -173,7 +175,7 @@ const upload = (files) => {
     }
 
     if (response.body.secure_url !== '') {
-      return response.body.secure_url
+      change({ pictures: pics.concat(response.body.secure_url) })
     }
   })
 }
