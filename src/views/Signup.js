@@ -149,7 +149,8 @@ const Pictures = (props) => (
     <div>
       <Dropzone
         multiple={false}
-        accept="image/jpg,image/png">
+        accept="image/png,image/jpeg"
+        onDrop={upload}>
         <p>Drop an image or click to select a file to upload.</p>
       </Dropzone>
     </div>
@@ -158,6 +159,24 @@ const Pictures = (props) => (
     </div>
   </SignupContent>
 )
+
+const upload = (files) => {
+  const preset = 'sxeg1qhp'
+  const url = 'http://res.cloudinary.com/dutch-pictures'
+  let upload = request.post(url)
+                      .field('upload_preset', preset)
+                      .field('file', files[0])
+
+  upload.end((err, response) => {
+    if (err) {
+      throw new Error(err)
+    }
+
+    if (response.body.secure_url !== '') {
+      return response.body.secure_url
+    }
+  })
+}
 
 const Location = (props) => (
   <SignupContent pager={props.pager}>
