@@ -32,7 +32,7 @@ export default class Profile extends Component {
       <Fullpage>
         <Head />
         <div>
-          <img className='home-img' src={pic} alt='profile picture' />
+          <img className='home-img' src={pic} alt='profile' />
           <Header>{this.state.firstName} {this.state.lastName}</Header>
           <div>
             I am a {this.state.age} year old {this.state.gender} seeking 
