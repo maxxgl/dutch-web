@@ -22,7 +22,7 @@ export default class Dates extends Component {
 
   render() {
     return (
-      <Fullpage>
+      <Fullpage backgroundColor='#343534'>
         <Head />
         {this.state.dates}
       </Fullpage>

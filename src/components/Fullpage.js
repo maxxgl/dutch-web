@@ -5,6 +5,7 @@ class Fullpage extends Component {
     return (
       <div style={{
           color: this.props.color,
+          backgroundColor: this.props.backgroundColor,
           textAlign: this.props.textAlign,
           height: '100%'
         }}
