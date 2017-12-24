@@ -40,8 +40,14 @@ export default class Dates extends Component {
 }
 
 const Date = (props) => (
-  <div className='date'>
+  <div className='date' onClick={(e) => {
+      let x = e.target.children[1].style.display
+      e.target.children[1].style.display = x === 'block' ? 'none' : 'block'
+    }}>
     {props.date.time}
-    <img src={expand} className='expand' />
+    <img src={expand} className='expand' alt='expand'/>
+    <div className='date-info'>
+      something or other
+    </div>
   </div>
 )

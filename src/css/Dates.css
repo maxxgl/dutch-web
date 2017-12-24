@@ -20,3 +20,8 @@
     height: 1em;
     float: right;
 }
+
+.date-info {
+    color: #d8d8d7;
+    display: none;
+}
