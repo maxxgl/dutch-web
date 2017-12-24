@@ -4,6 +4,8 @@ import '../css/Dates.css'
 import Fullpage from '../components/Fullpage'
 import Head from '../components/Head'
 import { consumer } from '../utils/consumer'
+import expand from '../static/expand_icon.svg'
+
 
 export default class Dates extends Component {
   constructor(props) {
@@ -38,5 +40,8 @@ export default class Dates extends Component {
 }
 
 const Date = (props) => (
-  <div className='date'>{props.date.time}</div>
+  <div className='date'>
+    {props.date.time}
+    <img src={expand} className='expand' />
+  </div>
 )
