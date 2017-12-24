@@ -8,8 +8,12 @@ import { consumer } from '../utils/consumer'
 export default class Dates extends Component {
   constructor(props) {
     super(props)
-    this.state = { dates: [] }
-    this.consume()
+    this.state = { dates: [
+        {time: 1514092768},
+        {time: 1514095768},
+        {time: 1514099768}
+      ] }
+    // this.consume()
   }
 
   consume = () => {
@@ -24,8 +28,15 @@ export default class Dates extends Component {
     return (
       <Fullpage backgroundColor='#343534'>
         <Head />
-        {this.state.dates}
+        <div id='dim'>Upcoming Dates</div>
+        {this.state.dates.map((date, index) => (
+          <Date key={index} date={date} />
+        ))}
       </Fullpage>
     )
   }
 }
+
+const Date = (props) => (
+  <div className='date'>{props.date.time}</div>
+)
