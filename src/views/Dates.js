@@ -10,12 +10,8 @@ import expand from '../static/expand_icon.svg'
 export default class Dates extends Component {
   constructor(props) {
     super(props)
-    this.state = { dates: [
-        {time: 1514092768},
-        {time: 1514095768},
-        {time: 1514099768}
-      ] }
-    // this.consume()
+    this.state = { dates: [] }
+    this.consume()
   }
 
   consume = () => {
