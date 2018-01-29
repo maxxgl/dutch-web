@@ -7,7 +7,7 @@ class Fullpage extends Component {
           color: this.props.color,
           backgroundColor: this.props.backgroundColor,
           textAlign: this.props.textAlign,
-          height: '100%'
+          minHeight: '100%'
         }}
         className={this.props.className}
       >
