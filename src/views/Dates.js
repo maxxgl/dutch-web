@@ -43,7 +43,14 @@ const Date = (props) => (
     {props.date.time}
     <img src={expand} className='expand' alt='expand'/>
     <div className='date-info'>
-      something or other
+      <div>
+        {props.date.pics.map((pic, index) => (
+          <img key={index} src={pic} className='date-pics' />
+        ))}
+      </div>
+      <div>Location: {props.date.location}</div>
+      <div>Dutch: {props.date.dutch}</div>
+      <div>Rating: {props.date.rating}</div>
     </div>
   </div>
 )
