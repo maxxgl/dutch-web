@@ -11,8 +11,8 @@
 .date {
     color: #ed1c24;
     font-size: 1.5em;
-    margin: .3em .75em;
-    padding-bottom: .4em;
+    margin: 0 .75em;
+    padding: .4em 0;
     border-bottom: 1px solid #666666;
 }
 

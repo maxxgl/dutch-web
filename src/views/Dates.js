@@ -45,7 +45,7 @@ const Date = (props) => (
     <div className='date-info'>
       <div>
         {props.date.pics.map((pic, index) => (
-          <img key={index} src={pic} className='date-pics' />
+          <img key={index} src={pic} className='date-pics' alt='date option' />
         ))}
       </div>
       <div>Location: {props.date.location}</div>
