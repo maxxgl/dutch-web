@@ -37,8 +37,9 @@ export default class Dates extends Component {
 
 const Date = (props) => (
   <div className='date' onClick={(e) => {
-      let x = e.target.children[1].style.display
-      e.target.children[1].style.display = x === 'block' ? 'none' : 'block'
+      let display = e.currentTarget.children[1].style.display
+      let toggle = display === 'block' ? 'none' : 'block'
+      e.currentTarget.children[1].style.display = toggle
     }}>
     {props.date.time}
     <img src={expand} className='expand' alt='expand'/>
