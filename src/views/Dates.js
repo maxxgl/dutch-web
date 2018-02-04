@@ -41,7 +41,7 @@ const Date = (props) => (
       let toggle = display === 'block' ? 'none' : 'block'
       e.currentTarget.children[1].style.display = toggle
     }}>
-    {props.date.time}
+    {props.date.data.time}
     <img src={expand} className='expand' alt='expand'/>
     <div className='date-info'>
       <div>
