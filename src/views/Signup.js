@@ -21,9 +21,11 @@ import { Redirect } from 'react-router-dom'
 export default class Signup extends Component {
   constructor(props) {
     super(props)
-    this.state = { page: 0, firstName: '', lastName: '', email: '',
-      password: '', pictures: [], range: '25', zip: '', likes: [], budget: 0,
-      gender: '', seeking: '', age: 0, youngest: 0, oldest: 0, submitted: 0 }
+    this.state = { page: 0, firstName: '', lastName: '', email: '',  age: 0,
+      password: '', pictures: [], range: '25000', location: '', likes: [],
+      budget: 0,gender: '', seeking: '', youngest: 0, oldest: 0, submitted: 0 }
+    navigator.geolocation.getCurrentPosition((p) => {
+      this.setState({location: p.coords}, this.setPlaces)})
     this.pages()
   }
 
