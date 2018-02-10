@@ -49,9 +49,9 @@ const Date = (props) => (
           <img key={index} src={pic} className='date-pics' alt='date option' />
         ))}
       </div>
-      <div>Location: {props.date.location}</div>
-      <div>Dutch: {props.date.dutch}</div>
-      <div>Rating: {props.date.rating}</div>
+      <div>Location: {props.date.data.location.name}</div>
+      <div>Dutch: {props.date.data.dutch}</div>
+      <div>Rating: {props.date.data.rating}</div>
     </div>
   </div>
 )
