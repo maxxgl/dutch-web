@@ -22,8 +22,9 @@ export default class Signup extends Component {
   constructor(props) {
     super(props)
     this.state = { page: 0, firstName: '', lastName: '', email: '',  age: 0,
-      password: '', pictures: [], range: '25000', location: '', likes: [],
-      budget: 0,gender: '', seeking: '', youngest: 0, oldest: 0, submitted: 0 }
+      password: '', pictures: [], range: '10000', location: '', likes: [],
+      budget: 0, gender: '', seeking: '', youngest: 0, oldest: 0,
+      submitted: 0, schedule: '' }
     navigator.geolocation.getCurrentPosition((p) => {
       this.setState({location: p.coords}, this.setPlaces)})
     this.pages()
@@ -55,7 +56,8 @@ export default class Signup extends Component {
 
   pages = (props) => {
     return [
-      <Email key={1} change={this.onChange} pager={this.nextPage} />,
+      <Email key={1} change={this.onChange} pager={this.nextPage} 
+        email={this.state.email} password={this.state.password} />,
       <Pictures key={2} change={this.setPictures} pager={this.nextPage}
         pics={this.state.pictures} />,
       <Location key={3} change={this.onChange} pager={this.nextPage} />,
@@ -66,7 +68,8 @@ export default class Signup extends Component {
         setSeeking={this.setSeeking} gender={this.state.gender}
         seeking={this.state.seeking} pager={this.nextPage} />,
       <Age key={7} change={this.onChange} pager={this.nextPage} />,
-      <Submit key={8} info={this.state} consume={this.consume} />
+      <Schedule key={8} change={this.onChange} pager={this.nextPage} />,
+      <Submit key={9} info={this.state} consume={this.consume} />
     ]
   }
 
@@ -132,10 +135,10 @@ const SignupContent = (props) => (
 const Email = (props) => (
   <SignupContent pager={props.pager}>
     <div>
-      <TextField type='email' onChange={props.change} placeholder='Email'
-      name='email' />
-      <TextField type='password' onChange={props.change} placeholder='Password'
-      name='password' />
+      <TextField type='email' value={props.email} onChange={props.change}
+        placeholder='Email' name='email' />
+      <TextField type='password' value={props.password} onChange={props.change}
+        placeholder='Password' name='password' />
     </div>
     <div>
       <Header>What is your email address?</Header>
@@ -288,6 +291,18 @@ const Age = (props) => (
     <div>
       <Header>How old are you?</Header>
       <div>What age range are you looking for?</div>
+    </div>
+  </SignupContent>
+)
+
+const Schedule = (props) => (
+  <SignupContent pager={props.pager}>
+    <div>
+
+    </div>
+    <div>
+      <Header>What days and times are you available?</Header>
+      <div>You can adjust this later.</div>
     </div>
   </SignupContent>
 )
