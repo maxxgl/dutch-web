@@ -22,8 +22,8 @@ export default class Signup extends Component {
   constructor(props) {
     super(props)
     this.state = { page: 0, firstName: '', lastName: '', email: '',  age: 0,
-      password: '', pictures: [], range: 25, location: '', likes: [],
-      budget: 0, gender: '', seeking: '', youngest: 0, oldest: 0,
+      password: '', pictures: [], range: 25, latitude: '', longitude: '',
+      likes: [], budget: 0, gender: '', seeking: '', youngest: 0, oldest: 0,
       submitted: 0, schedule: '', start: '', end: '' }
     this.pages()
   }
@@ -39,7 +39,8 @@ export default class Signup extends Component {
   }
         
   setLocation = () => navigator.geolocation.getCurrentPosition((p) => {
-    this.setState({location: p.coords})})
+    this.setState({latitude: p.coords.latitude, longitude: p.coords.longitude})
+  })
   setGender = (e) => this.setState({gender: e.target.id})
   setSeeking = (e) => this.setState({seeking: e.target.id})
   setPictures = (pics) => this.setState({pictures: pics})
@@ -60,7 +61,7 @@ export default class Signup extends Component {
         pics={this.state.pictures} />,
       <Location key={3} change={this.onChange} pager={this.nextPage} 
         range={this.state.range} setLocation={this.setLocation}
-        location={this.state.location} />,
+        latitude={this.state.latitude} longitude={this.state.longitude} />,
       <Traits key={4} change={this.onChange} traits={this.state.likes}
         newTrait={this.newTrait} pager={this.nextPage} />,
       <Money key={5} change={this.onChange} pager={this.nextPage} />,
@@ -202,8 +203,8 @@ const Location = (props) => (
         <img src={findLocation} alt='location' className='location'/>
         <span>Find My Location</span>
       </div>
-      <div>Latitude: {props.location.latitude}</div>
-      <div>Longitude: {props.location.longitude}</div>
+      <div>Latitude: {props.latitude}°</div>
+      <div>Longitude: {props.longitude}°</div>
     </div>
   </SignupContent>
 )
