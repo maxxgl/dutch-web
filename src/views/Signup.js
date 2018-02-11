@@ -112,26 +112,22 @@ const Circles = (props) => {
   return circles
 }
 
-class SignupContent extends Component {
-  render() {
-    return (
-      <Grid className='signup-content'>
-        <Column size='u-2-24' />
-        <Column size='u-8-24'>
-          {this.props.children[0]}
-        </Column>
-        <Column size='u-2-24' />
-        <Column size='u-9-24'>
-          {this.props.children[1]}
-        </Column>
-        <Column size='u-3-24'>
-          <img src={next} onClick={this.props.pager} alt='next'
-            className='icon-centered'/>
-        </Column>
-      </Grid>
-    )
-  }
-}
+const SignupContent = (props) => (
+  <Grid className='signup-content'>
+    <Column size='u-2-24' />
+    <Column size='u-8-24'>
+      {props.children[0]}
+    </Column>
+    <Column size='u-2-24' />
+    <Column size='u-9-24'>
+      {props.children[1]}
+    </Column>
+    <Column size='u-3-24'>
+      <img src={next} onClick={props.pager} alt='next'
+        className='icon-centered'/>
+    </Column>
+  </Grid>
+)
 
 const Email = (props) => (
   <SignupContent pager={props.pager}>
