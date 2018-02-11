@@ -24,16 +24,14 @@ export default class Signup extends Component {
     this.state = { page: 0, firstName: '', lastName: '', email: '',  age: 0,
       password: '', pictures: [], range: 25, location: '', likes: [],
       budget: 0, gender: '', seeking: '', youngest: 0, oldest: 0,
-      submitted: 0, schedule: '' }
+      submitted: 0, schedule: '', start: '', end: '' }
     this.pages()
   }
 
   handlePageChange = (e) => this.setState({ page: parseInt(e.target.id, 10) })
 
   nextPage = () => this.setState({ page: this.state.page + 1 })
-
   onChange = (e) => this.setState({[e.target.name]: e.target.value})
-
   newTrait = (value) => {
     let list = this.state.likes
     list.push(value)
@@ -70,7 +68,8 @@ export default class Signup extends Component {
         setSeeking={this.setSeeking} gender={this.state.gender}
         seeking={this.state.seeking} pager={this.nextPage} />,
       <Age key={7} change={this.onChange} pager={this.nextPage} />,
-      <Schedule key={8} change={this.onChange} pager={this.nextPage} />,
+      <Schedule key={8} change={this.onChange} pager={this.nextPage} 
+        start={this.state.start} end={this.state.end} />,
       <Submit key={9} info={this.state} consume={this.consume} />
     ]
   }
@@ -300,10 +299,12 @@ const Age = (props) => (
 const Schedule = (props) => (
   <SignupContent pager={props.pager}>
     <div>
-
+      <input type="time" onChange={props.change} name='start'/>
+      <Header>to</Header>
+      <input type="time" onChange={props.change} name='end'/>
     </div>
     <div>
-      <Header>What days and times are you available?</Header>
+      <Header>What time are you available each day for dates?</Header>
       <div>You can adjust this later.</div>
     </div>
   </SignupContent>
