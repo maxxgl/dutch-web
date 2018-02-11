@@ -14,7 +14,8 @@ export default class Login extends Component {
 
   onChange = (e) => this.setState({[e.target.name]: e.target.value})
 
-  consume = () => {
+  consume = (e) => {
+    e.preventDefault()
     consumer('', 'POST', this.state)
       .then((response) => {
         if (response) {
@@ -23,18 +24,23 @@ export default class Login extends Component {
           localStorage.setItem('profilePic', response.pic)
           this.setState({ email: '', password: '' })
           window.location.reload()
-        }})
+        } else {
+          this.setState({ password: '' })
+        }
+      })
   }
 
   render() {
     return (
       <Fullpage className='login'>
         <Header>Login</Header>
-        <TextField type='email' onChange={this.onChange} placeholder='Email'
-          name='email' />
-        <TextField type='password' onChange={this.onChange}
-          placeholder='Password' name='password' />
-        <Button primary click={this.consume}>Login</Button>
+        <form>
+          <TextField type='email' onChange={this.onChange} placeholder='Email'
+            name='email' autoFocus={true} value={this.state.email} />
+          <TextField type='password' onChange={this.onChange} name='password'
+            placeholder='Password' value={this.state.password} />
+          <Button primary click={this.consume}>Login</Button>
+        </form>
       </Fullpage>
     )
   }
