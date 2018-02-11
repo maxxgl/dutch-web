@@ -22,11 +22,9 @@ export default class Signup extends Component {
   constructor(props) {
     super(props)
     this.state = { page: 0, firstName: '', lastName: '', email: '',  age: 0,
-      password: '', pictures: [], range: '10000', location: '', likes: [],
+      password: '', pictures: [], range: 25, location: '', likes: [],
       budget: 0, gender: '', seeking: '', youngest: 0, oldest: 0,
       submitted: 0, schedule: '' }
-    navigator.geolocation.getCurrentPosition((p) => {
-      this.setState({location: p.coords}, this.setPlaces)})
     this.pages()
   }
 
@@ -41,7 +39,9 @@ export default class Signup extends Component {
     list.push(value)
     this.setState({likes: list})
   }
-
+        
+  setLocation = () => navigator.geolocation.getCurrentPosition((p) => {
+    this.setState({location: p.coords})})
   setGender = (e) => this.setState({gender: e.target.id})
   setSeeking = (e) => this.setState({seeking: e.target.id})
   setPictures = (pics) => this.setState({pictures: pics})
@@ -60,7 +60,9 @@ export default class Signup extends Component {
         email={this.state.email} password={this.state.password} />,
       <Pictures key={2} change={this.setPictures} pager={this.nextPage}
         pics={this.state.pictures} />,
-      <Location key={3} change={this.onChange} pager={this.nextPage} />,
+      <Location key={3} change={this.onChange} pager={this.nextPage} 
+        range={this.state.range} setLocation={this.setLocation}
+        location={this.state.location} />,
       <Traits key={4} change={this.onChange} traits={this.state.likes}
         newTrait={this.newTrait} pager={this.nextPage} />,
       <Money key={5} change={this.onChange} pager={this.nextPage} />,
@@ -187,22 +189,22 @@ const upload = (file, pics, change) => {
 const Location = (props) => (
   <SignupContent pager={props.pager}>
     <div>
-      <div style={{ textAlign: 'center' }}>{props.range}</div>
+      <div>{props.range} km</div>
       <span>1</span>
       <input type='range' onChange={props.change} name='range'
-        defaultValue='25' min='1' max='50' />
+        value={props.range} min='1' max='50' />
       <span>50</span>
     </div>
     <div>
       <Header>
         What is your location, and how far will you travel for a date
       </Header>
-      <TextField type='text' onChange={props.change} placeholder='Zip Code'
-        name='zip' />
-      <div>
+      <div onClick={props.setLocation}>
         <img src={findLocation} alt='location' className='location'/>
         <span>Find My Location</span>
       </div>
+      <div>Latitude: {props.location.latitude}</div>
+      <div>Longitude: {props.location.longitude}</div>
     </div>
   </SignupContent>
 )
