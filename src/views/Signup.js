@@ -21,7 +21,7 @@ import { Redirect } from 'react-router-dom'
 export default class Signup extends Component {
   constructor(props) {
     super(props)
-    this.state = { page: 1, firstName: '', lastName: '', email: '',  age: 0,
+    this.state = { page: 0, firstName: '', lastName: '', email: '',  age: 0,
       password: '', pictures: [], range: 25, latitude: '', longitude: '',
       likes: [], budget: 0, gender: '', seeking: '', youngest: 0, oldest: 0,
       submitted: 0, schedule: '', start: '', end: '' }
