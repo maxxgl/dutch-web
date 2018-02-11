@@ -21,7 +21,7 @@ import { Redirect } from 'react-router-dom'
 export default class Signup extends Component {
   constructor(props) {
     super(props)
-    this.state = { page: 0, firstName: '', lastName: '', email: '',  age: 0,
+    this.state = { page: 1, firstName: '', lastName: '', email: '',  age: 0,
       password: '', pictures: [], range: 25, latitude: '', longitude: '',
       likes: [], budget: 0, gender: '', seeking: '', youngest: 0, oldest: 0,
       submitted: 0, schedule: '', start: '', end: '' }
@@ -171,19 +171,25 @@ const Pictures = (props) => (
 const upload = (file, pics, change) => {
   const preset = 'sxeg1qhp'
   const url = 'https://api.cloudinary.com/v1_1/dutch-pictures/upload'
-  let upload = request.post(url)
-                      .field('upload_preset', preset)
-                      .field('file', file)
-
-  upload.end((err, response) => {
-    if (err) {
-      throw new Error(err)
+  let img = new Image()
+  img.src = window.URL.createObjectURL( file );
+  img.onload = () => {
+    if (img.naturalHeight !== img.naturalWidth) {
+      alert("Image must be square")
+      return
     }
-
-    if (response.body.secure_url !== '') {
-      change(pics.concat(response.body.secure_url))
-    }
-  })
+    let upload = request.post(url)
+                        .field('upload_preset', preset)
+                        .field('file', file)
+    upload.end((err, response) => {
+      if (err) {
+        throw new Error(err)
+      }
+      if (response.body.secure_url !== '') {
+        change(pics.concat(response.body.secure_url))
+      }
+    })
+  }
 }
 
 const Location = (props) => (
