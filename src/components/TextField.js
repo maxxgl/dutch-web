@@ -13,6 +13,7 @@ export default class TextField extends Component {
           name={this.props.name}
           onChange={this.props.onChange}
           onKeyPress={this.props.handleKeyPress}
+          autoFocus={this.props.autoFocus}
         />
       </div>
     )
