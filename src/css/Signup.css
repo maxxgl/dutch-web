@@ -56,3 +56,9 @@
     display: inline-block;
     width: 20%;
 }
+
+@media (max-width: 768px) {
+    .signup-logo {
+        display: none;
+    }
+}

@@ -81,10 +81,10 @@ export default class Signup extends Component {
     return (
       <Fullpage>
         <Grid>
-          <Column size='u-1-4'>
+          <Column size='u-md-1-4'>
             <img src={logo} alt='logo' className='signup-logo'/>
           </Column>
-          <Column size='u-1-2 circle-column'>
+          <Column size='u-1-1 u-md-1-2 circle-column'>
             <nav>
               <Circles
                 page={this.state.page}
@@ -93,7 +93,7 @@ export default class Signup extends Component {
               />
             </nav>
           </Column>
-          <Column size='u-1-4' />
+          <Column size='u-md-1-4' />
         </Grid>
         {this.pages()[this.state.page]}
       </Fullpage>
@@ -146,7 +146,7 @@ const Email = (props) => (
     </div>
     <div>
       <Header>What is your email address?</Header>
-      <div>So we can provide you the best experience we will ask to you log into your email, this way we can get an idea of your schedule.</div>
+      <div>This will also be your username.</div>
     </div>
   </SignupContent>
 )
