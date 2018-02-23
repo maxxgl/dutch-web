@@ -23,8 +23,8 @@ export default class Signup extends Component {
     super(props)
     this.state = { page: 0, firstName: '', lastName: '', email: '',  age: 0,
       password: '', pictures: [], range: 25, latitude: '', longitude: '',
-      likes: [], budget: 0, gender: '', seeking: '', youngest: 0, oldest: 0,
-      submitted: 0, schedule: '', start: '', end: '' }
+      likes: [], dislikes: [], budget: 0, gender: '', seeking: '', youngest: 0,
+      oldest: 0, submitted: 0, schedule: '', start: '', end: '' }
     this.pages()
   }
 
@@ -32,10 +32,10 @@ export default class Signup extends Component {
 
   nextPage = () => this.setState({ page: this.state.page + 1 })
   onChange = (e) => this.setState({[e.target.name]: e.target.value})
-  newTrait = (value) => {
-    let list = this.state.likes
+  newTrait = (value, name) => {
+    let list = this.state[name]
     list.push(value)
-    this.setState({likes: list})
+    this.setState({[name]: list})
   }
         
   setLocation = () => navigator.geolocation.getCurrentPosition((p) => {
@@ -64,14 +64,16 @@ export default class Signup extends Component {
         latitude={this.state.latitude} longitude={this.state.longitude} />,
       <Traits key={4} change={this.onChange} traits={this.state.likes}
         newTrait={this.newTrait} pager={this.nextPage} />,
-      <Money key={5} change={this.onChange} pager={this.nextPage} />,
-      <Gender key={6} change={this.onChange} setGender={this.setGender}
+      <Traits key={5} change={this.onChange} traits={this.state.dislikes}
+        newTrait={this.newTrait} pager={this.nextPage} dislike />,
+      <Money key={6} change={this.onChange} pager={this.nextPage} />,
+      <Gender key={7} change={this.onChange} setGender={this.setGender}
         setSeeking={this.setSeeking} gender={this.state.gender}
         seeking={this.state.seeking} pager={this.nextPage} />,
-      <Age key={7} change={this.onChange} pager={this.nextPage} />,
-      <Schedule key={8} change={this.onChange} pager={this.nextPage} 
+      <Age key={8} change={this.onChange} pager={this.nextPage} />,
+      <Schedule key={9} change={this.onChange} pager={this.nextPage} 
         start={this.state.start} end={this.state.end} />,
-      <Submit key={9} info={this.state} consume={this.consume} />
+      <Submit key={10} info={this.state} consume={this.consume} />
     ]
   }
 
@@ -216,13 +218,19 @@ const Location = (props) => (
 )
 
 const Traits = (props) => {
+  let traitType = "likes"
+  let traitText = "What are 5 traits you look for in a relationship?"
+  if (props.dislike) {
+    traitType = "dislikes"
+    traitText = "How about 5 things you just cannot stand?"
+  }
   return (
     <SignupContent pager={props.pager}>
       <div>
         <TextField type='text'  placeholder='Traits' name='likes'
           handleKeyPress={(e) => {
             if (e.key === 'Enter') {
-              props.newTrait(e.target.value)
+              props.newTrait(e.target.value, traitType)
               e.target.value = ''
             }}}
         />
@@ -235,7 +243,7 @@ const Traits = (props) => {
         </div>
       </div>
       <div>
-        <Header>What are 5 traits you look for in a relationship?</Header>
+        <Header>{traitText}</Header>
         <div>Use single words.</div>
       </div>
     </SignupContent>
