@@ -57,7 +57,21 @@ const Date = (props) => (
       <div>Rating: {props.data.rating}</div>
       <div>User A Checked In: {props.data.userACheckedIn.toString()}</div>
       <div>User B Checked In: {props.data.userBCheckedIn.toString()}</div>
-      <Button primary>Check-In</Button>
+      <Button primary click={() => checkin(props._id.$oid)}>
+        Check-In
+      </Button>
     </div>
   </div>
 )
+
+const checkin = (id) => {
+  navigator.geolocation.getCurrentPosition((p) => {
+    const place = {
+      latitude: p.coords.latitude,
+      longitude: p.coords.longitude,
+    }
+    consumer('user/' + localStorage.getItem('userId') + '/date/' + 
+      id, 'PUT', place)
+    .then((response) => {window.location.reload()})
+  })
+}
