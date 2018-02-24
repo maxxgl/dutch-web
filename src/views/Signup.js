@@ -228,6 +228,10 @@ const Traits = (props) => {
   return (
     <SignupContent pager={props.pager}>
       <div>
+        <Header>{traitText}</Header>
+        <div>Use single words.</div>
+      </div>
+      <div>
         <TextField type='text'  placeholder='Traits' name='likes'
           handleKeyPress={(e) => {
             if (e.key === 'Enter') {
@@ -243,10 +247,6 @@ const Traits = (props) => {
           )}
         </div>
       </div>
-      <div>
-        <Header>{traitText}</Header>
-        <div>Use single words.</div>
-      </div>
     </SignupContent>
   )
 }
@@ -254,14 +254,14 @@ const Traits = (props) => {
 const Money = (props) => (
   <SignupContent pager={props.pager}>
     <div>
+      <Header>About how much are you willing to spend on a date?</Header>
+      <div>You can change this later.</div>
+    </div>
+    <div>
       <span>$</span>
       <input type='range' onChange={props.change} name='budget'
         defaultValue='50' min='0' max='100' />
       <span>$$$$</span>
-    </div>
-    <div>
-      <Header>About how much are you willing to spend on a date?</Header>
-      <div>You can change this later.</div>
     </div>
   </SignupContent>
 )
@@ -269,14 +269,14 @@ const Money = (props) => (
 const Gender = (props) => (
   <SignupContent pager={props.pager}>
     <div>
+      <Header>What are you looking for?</Header>
+      <div>You can select more than one.</div>
+    </div>
+    <div>
       <Header>I'm a {props.gender}</Header>
       <GenderButtons id='gender' onChange={props.setGender} />
       <Header>Seeking a {props.seeking}</Header>
       <GenderButtons onChange={props.setSeeking} />
-    </div>
-    <div>
-      <Header>What are you looking for?</Header>
-      <div>You can select more than one.</div>
     </div>
   </SignupContent>
 )
@@ -298,16 +298,18 @@ const GenderButtons = (props) => (
 const Age = (props) => (
   <SignupContent pager={props.pager}>
     <div>
-      <TextField type='number' onChange={props.change} 
-        name='age' placeholder='I am' />
-      <TextField type='number' onChange={props.change} 
-        name='youngest' placeholder='Young' />
-      <TextField type='number' onChange={props.change} 
-        name='oldest' placeholder='Old' />
-    </div>
-    <div>
       <Header>How old are you?</Header>
       <div>What age range are you looking for?</div>
+    </div>
+    <div>
+      <TextField type='number' onChange={props.change}
+        name='age' placeholder='My Age' />
+      <div>What age range are you looking for?</div>
+      <TextField type='number' onChange={props.change}
+        name='youngest' placeholder='Young' className='age'/>
+        <span>to</span>
+      <TextField type='number' onChange={props.change}
+        name='oldest' placeholder='Old' className='age'/>
     </div>
   </SignupContent>
 )
@@ -315,13 +317,13 @@ const Age = (props) => (
 const Schedule = (props) => (
   <SignupContent pager={props.pager}>
     <div>
+      <Header>What time are you available each day for dates?</Header>
+      <div>You can adjust this later.</div>
+    </div>
+    <div>
       <input type="time" onChange={props.change} name='start'/>
       <Header>to</Header>
       <input type="time" onChange={props.change} name='end'/>
-    </div>
-    <div>
-      <Header>What time are you available each day for dates?</Header>
-      <div>You can adjust this later.</div>
     </div>
   </SignupContent>
 )
