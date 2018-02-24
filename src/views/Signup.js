@@ -10,6 +10,7 @@ import circleGreen from '../static/circle_green.svg'
 import { Grid, Column } from '../components/Grid'
 import TextField from '../components/TextField'
 import Header from '../components/Header'
+import camera from '../static/camera_icon.svg'
 import findLocation from '../static/findlocation_icon.svg'
 import female from '../static/woman_icon.svg'
 import male from '../static/man_icon.svg'
@@ -120,33 +121,30 @@ const Circles = (props) => {
 }
 
 const SignupContent = (props) => (
-  <Grid className='signup-content'>
-    <Column size='u-2-24' />
-    <Column size='u-8-24'>
+  <div>
+    <div className='signup-first signup-content'>
       {props.children[0]}
-    </Column>
-    <Column size='u-2-24' />
-    <Column size='u-9-24'>
+    </div>
+    <div className='signup-second signup-content'>
       {props.children[1]}
-    </Column>
-    <Column size='u-3-24'>
-      <img src={next} onClick={props.pager} alt='next'
-        className='icon-centered'/>
-    </Column>
-  </Grid>
+    </div>
+    <div className='signup-next'>
+      <img src={next} onClick={props.pager} alt='next' id='next'/>
+    </div>
+  </div>
 )
 
 const Email = (props) => (
   <SignupContent pager={props.pager}>
     <div>
+      <Header>What is your email address?</Header>
+      <div>This will also be your username.</div>
+    </div>
+    <div>
       <TextField type='email' value={props.email} onChange={props.change}
         placeholder='Email' name='email' />
       <TextField type='password' value={props.password} onChange={props.change}
         placeholder='Password' name='password' />
-    </div>
-    <div>
-      <Header>What is your email address?</Header>
-      <div>This will also be your username.</div>
     </div>
   </SignupContent>
 )
@@ -154,18 +152,19 @@ const Email = (props) => (
 const Pictures = (props) => (
   <SignupContent pager={props.pager}>
     <div>
+      <Header>Upload, take, or choose 10 pictures of yourself.</Header>
+    </div>
+    <div>
       <Dropzone
+        className="dropzone"
         multiple={false}
         accept="image/png,image/jpeg"
         onDrop={(files) => upload(files[0], props.pics, props.change)}>
-        <p>Drop an image or click to select a file to upload.</p>
+        <img src={camera} alt='camera' />
       </Dropzone>
       <div className='upload-pics-wrapper' >{props.pics.map((item, i) => (
         <img key={i} src={item} alt='upload' className='upload-pic'/>
       ))}</div>
-    </div>
-    <div>
-      <Header>Upload 10 pictures of yourself.</Header>
     </div>
   </SignupContent>
 )

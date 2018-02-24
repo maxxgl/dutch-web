@@ -3,8 +3,8 @@
     width: 6em;
 }
 
-.signup-content {
-    padding-top: 25vh;
+.circle-column {
+    text-align: center;
 }
 
 .circle {
@@ -14,17 +14,41 @@
     cursor: pointer;
 }
 
-.circle-column {
+.signup-content {
     text-align: center;
+    padding: 3em 2.5em;
 }
 
-.icon-centered {
-    height: 100%;
+.signup-next {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-top: solid black 1px;
+}
+
+#next {
+    display: block;
     margin: 0 auto;
+    height: 100%;
     width: 2.25em;
-    float: right;
-    padding-right: .75em;
+    padding: .4em;
     cursor: pointer;
+}
+
+.dropzone {
+    width: 30%;
+    margin: 0 auto;
+    margin-bottom: 4em;
+}
+
+.upload-pics-wrapper {
+    text-align: left;
+}
+
+.upload-pic {
+    display: inline-block;
+    width: 33.33333333%;
 }
 
 .location {
@@ -50,11 +74,6 @@
 #submit-box {
     height: 50vh;
     background-color: #61c5c1;
-}
-
-.upload-pic {
-    display: inline-block;
-    width: 20%;
 }
 
 @media (max-width: 768px) {
