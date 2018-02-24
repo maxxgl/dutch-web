@@ -5,6 +5,7 @@ import Fullpage from '../components/Fullpage'
 import Head from '../components/Head'
 import { consumer } from '../utils/consumer'
 import expand from '../static/expand_icon.svg'
+import Button from '../components/Button'
 
 
 export default class Dates extends Component {
@@ -28,7 +29,7 @@ export default class Dates extends Component {
         <Head />
         <div id='dim'>Upcoming Dates</div>
         {this.state.dates.map((date, index) => (
-          <Date key={index} date={date} />
+          <Date key={index} {...date} />
         ))}
       </Fullpage>
     )
@@ -36,22 +37,27 @@ export default class Dates extends Component {
 }
 
 const Date = (props) => (
-  <div className='date' onClick={(e) => {
-      let display = e.currentTarget.children[1].style.display
+  <div className='date'>
+    <div onClick={(e) => {
+      let display = e.currentTarget.nextSibling.style.display
       let toggle = display === 'block' ? 'none' : 'block'
-      e.currentTarget.children[1].style.display = toggle
+      e.currentTarget.nextSibling.style.display = toggle
     }}>
-    {props.date.data.time}
-    <img src={expand} className='expand' alt='expand'/>
+      {props.data.time}
+      <img src={expand} className='expand' alt='expand'/>
+    </div>
     <div className='date-info'>
       <div>
-        {props.date.pics.map((pic, index) => (
+        {props.pics.map((pic, index) => (
           <img key={index} src={pic} className='date-pics' alt='date option' />
         ))}
       </div>
-      <div>Location: {props.date.data.location.name}</div>
-      <div>Dutch: {props.date.data.dutch}</div>
-      <div>Rating: {props.date.data.rating}</div>
+      <div>Location: {props.data.location.name}</div>
+      <div>Dutch: {props.data.dutch}</div>
+      <div>Rating: {props.data.rating}</div>
+      <div>User A Checked In: {props.data.userACheckedIn.toString()}</div>
+      <div>User B Checked In: {props.data.userBCheckedIn.toString()}</div>
+      <Button primary>Check-In</Button>
     </div>
   </div>
 )
