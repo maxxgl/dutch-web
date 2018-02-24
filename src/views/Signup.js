@@ -334,12 +334,15 @@ const Submit = (props) => {
   }
   return (
     <SignupContent>
-      <div>{Object.keys(props.info).map((item, i) => (
+      <div>
+        {Object.keys(props.info).map((item, i) => (
           <div key={i}>
             {item}: {props.info[item]}
           </div>
-      ))}</div>
-      <Button primary click={props.consume}>Create Account</Button>
+        ))}
+        <Button primary click={props.consume}>Create Account</Button>
+      </div>
+      <div></div>
     </SignupContent>
   )
 }

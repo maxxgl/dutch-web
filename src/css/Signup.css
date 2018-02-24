@@ -20,11 +20,12 @@
 }
 
 .signup-next {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     border-top: solid black 1px;
+    background-color: white;    
 }
 
 #next {
