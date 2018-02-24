@@ -37,8 +37,12 @@ body::-webkit-scrollbar {
     justify-content: center;
 }
 
+.back2 {
+    background-color: #61c5c1 !important;
+}
+
 #refresh {
-    height: 6em;
+    width: 50%;
 }
 
 .remove {

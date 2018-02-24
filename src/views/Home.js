@@ -6,6 +6,7 @@ import Fullpage from '../components/Fullpage'
 import Person from '../components/Person'
 import Head from '../components/Head'
 import more from '../static/reschedule_icon.svg'
+import confirm from '../static/confirm_icon.svg'
 
 export default class Home extends Component {
   constructor(props) {
@@ -48,20 +49,28 @@ export default class Home extends Component {
   }
 
   day = new Date().toLocaleString('en-us', {  weekday: 'long' })
-  tiles = () => (
-    <div>
-      <div id='flavor-wrapper'>
-          <div id='home-flavor-text'>Matches for {this.day}</div>
+  tiles = () => {
+    let len = 0
+    let icon = more
+    this.state.remove.map(value => len += value)
+    if (len === 2) {
+      icon = confirm
+    }
+    return (
+      <div>
+        <div id='flavor-wrapper'>
+            <div id='home-flavor-text'>Matches for {this.day}</div>
+        </div>
+        {this.state.prospects.map((prospect, index) => (
+          <Tile key={index} pic={prospect.pics[0]} index={index}
+            remove={this.state.remove[index]} />
+        ))}
+        <div className={'home-tile back' + len}  id='refresh-button'>
+          <img id='refresh' src={icon} onClick={this.shuffle} alt='refresh' />
+        </div>
       </div>
-      {this.state.prospects.map((prospect, index) => (
-        <Tile key={index} pic={prospect.pics[0]} index={index}
-          remove={this.state.remove[index]} />
-      ))}
-      <div className='home-tile' id='refresh-button'>
-        <img id='refresh' src={more} onClick={this.shuffle} alt='refresh' />
-      </div>
-    </div>
-  )
+    )
+  }
 
   prospect = (props) => {
     const i = parseInt(props.match.params.number, 10)
