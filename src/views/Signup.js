@@ -196,22 +196,24 @@ const upload = (file, pics, change) => {
 const Location = (props) => (
   <SignupContent pager={props.pager}>
     <div>
-      <div>{props.range} km</div>
-      <span>1</span>
-      <input type='range' onChange={props.change} name='range'
-        value={props.range} min='1' max='50' />
-      <span>50</span>
-    </div>
-    <div>
       <Header>
         What is your location, and how far will you travel for a date
       </Header>
+    </div>
+    <div>
       <div onClick={props.setLocation}>
         <img src={findLocation} alt='location' className='location'/>
         <span>Find My Location</span>
       </div>
       <div>Latitude: {props.latitude}°</div>
       <div>Longitude: {props.longitude}°</div>
+      <div className='range-wrapper'>
+        <span className='label'>0</span>
+        <input type='range' onChange={props.change} name='range'
+          value={props.range} min='0' max='50' />
+        <span className='label'>50</span>
+        <Header>{props.range} km</Header>
+      </div>
     </div>
   </SignupContent>
 )

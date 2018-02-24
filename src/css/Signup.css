@@ -57,6 +57,40 @@
     padding-right: 0.5em;
 }
 
+.range-wrapper {
+    margin-top: 3em;
+}
+
+.label {
+    font-size: 1.5em;
+    font-weight: 100;
+}
+
+input[type=range] {
+    -webkit-appearance: none; 
+    width: 60%;
+    height: 16px;
+    margin: 0 1em;
+    background: transparent;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 80%;
+    height: 0;
+    cursor: pointer;
+    border: .5px solid dimgray;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 8px;
+    background: #61c5c1;
+    margin-top: -8px;
+    cursor: pointer;
+}
+
 .gender-buttons {
     text-align: center;
     box-sizing: border-box;
