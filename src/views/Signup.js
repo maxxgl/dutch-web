@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../css/Signup.css'
 import Fullpage from '../components/Fullpage'
+import ReactSwipe from 'react-swipe'
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import logo from '../static/logotype_green.svg'
@@ -22,16 +23,19 @@ import { Redirect } from 'react-router-dom'
 export default class Signup extends Component {
   constructor(props) {
     super(props)
-    this.state = { page: 0, firstName: '', lastName: '', email: '',  age: 0,
+    this.state = { pos: 0, firstName: '', lastName: '', email: '',  age: 0,
       password: '', pictures: [], range: 25, latitude: '', longitude: '',
       likes: [], dislikes: [], budget: 0, gender: '', seeking: '', youngest: 0,
-      oldest: 0, submitted: 0, schedule: '', start: '', end: '' }
-    this.pages()
+      oldest: 0, submitted: 0, start: '', end: '' }
   }
 
-  handlePageChange = (e) => this.setState({ page: parseInt(e.target.id, 10) })
+  nextPage = () => this.swipe.next()
+  updatePos = () => this.setState({ pos: this.swipe.getPos() })
+  slide = (i) => {
+    this.swipe.slide(i)
+    this.updatePos()
+  }
 
-  nextPage = () => this.setState({ page: this.state.page + 1 })
   onChange = (e) => this.setState({[e.target.name]: e.target.value})
   newTrait = (value, name) => {
     let list = this.state[name]
@@ -52,33 +56,29 @@ export default class Signup extends Component {
         if (response) {
           this.setState({submitted: 1})
         }})
-  }
-
-  pages = (props) => {
-    return [
-      <Email key={1} change={this.onChange} pager={this.nextPage} 
-        email={this.state.email} password={this.state.password} />,
-      <Pictures key={2} change={this.setPictures} pager={this.nextPage}
-        pics={this.state.pictures} />,
-      <Location key={3} change={this.onChange} pager={this.nextPage} 
-        range={this.state.range} setLocation={this.setLocation}
-        latitude={this.state.latitude} longitude={this.state.longitude} />,
-      <Traits key={4} change={this.onChange} traits={this.state.likes}
-        newTrait={this.newTrait} pager={this.nextPage} />,
-      <Traits key={5} change={this.onChange} traits={this.state.dislikes}
-        newTrait={this.newTrait} pager={this.nextPage} dislike />,
-      <Money key={6} change={this.onChange} pager={this.nextPage} />,
-      <Gender key={7} change={this.onChange} setGender={this.setGender}
-        setSeeking={this.setSeeking} gender={this.state.gender}
-        seeking={this.state.seeking} pager={this.nextPage} />,
-      <Age key={8} change={this.onChange} pager={this.nextPage} />,
-      <Schedule key={9} change={this.onChange} pager={this.nextPage} 
-        start={this.state.start} end={this.state.end} />,
-      <Submit key={10} info={this.state} consume={this.consume} />
-    ]
-  }
+  }   
 
   render() {
+    const pages = ([
+      <Email change={this.onChange} 
+        email={this.state.email} password={this.state.password} />,
+      <Pictures change={this.setPictures} pics={this.state.pictures} />,
+      <Location change={this.onChange} range={this.state.range}
+        setLocation={this.setLocation} latitude={this.state.latitude}
+        longitude={this.state.longitude} />,
+      <Traits change={this.onChange} traits={this.state.likes}
+        newTrait={this.newTrait} />,
+      <Traits change={this.onChange} traits={this.state.dislikes}
+        newTrait={this.newTrait} dislike />,
+      <Money change={this.onChange} />,
+      <Gender change={this.onChange} setGender={this.setGender}
+        setSeeking={this.setSeeking} gender={this.state.gender}
+        seeking={this.state.seeking} />,
+      <Age change={this.onChange} />,
+      <Schedule change={this.onChange} start={this.state.start}
+        end={this.state.end} />,
+      <Submit info={this.state} consume={this.consume} />
+    ]).map((item, i) => <div key={i}>{item}</div>)
     return (
       <Fullpage>
         <Grid>
@@ -88,15 +88,21 @@ export default class Signup extends Component {
           <Column size='u-1-1 u-md-1-2 circle-column'>
             <nav>
               <Circles
-                page={this.state.page}
-                pageCount={this.pages().length}
-                change={this.handlePageChange}
+                page={this.state.pos}
+                pageCount={this.swipe ? this.swipe.getNumSlides() : 10}
+                slide={this.slide}
               />
             </nav>
           </Column>
           <Column size='u-md-1-4' />
         </Grid>
-        {this.pages()[this.state.page]}
+        <ReactSwipe ref={reactSwipe => this.swipe = reactSwipe}
+          swipeOptions={{ callback: this.updatePos }}>
+          {pages}
+        </ReactSwipe>
+        <div className='signup-next'>
+          <img src={next} onClick={this.nextPage} alt='next' id='next'/>
+        </div>
       </Fullpage>
     )
   }
@@ -104,17 +110,11 @@ export default class Signup extends Component {
 
 const Circles = (props) => {
   let circles = []
-  for (var i = 0; i < props.pageCount; i++) {
+  for (let i = 0; i < props.pageCount; i++) {
     let circleType = i === props.page ? circleGreen : circle
     circles.push(
-      <img
-        key={i}
-        src={circleType}
-        id={i}
-        onClick={props.change}
-        alt='circle'
-        className='circle'
-      />
+      <img key={i} alt='circle' className='circle' src={circleType}
+        onClick={() => props.slide(i)}/>
     )
   }
   return circles
@@ -128,14 +128,11 @@ const SignupContent = (props) => (
     <div className='signup-second signup-content'>
       {props.children[1]}
     </div>
-    <div className='signup-next'>
-      <img src={next} onClick={props.pager} alt='next' id='next'/>
-    </div>
   </div>
 )
 
 const Email = (props) => (
-  <SignupContent pager={props.pager}>
+  <SignupContent>
     <div>
       <Header>What is your email address?</Header>
       <div>This will also be your username.</div>
@@ -150,7 +147,7 @@ const Email = (props) => (
 )
 
 const Pictures = (props) => (
-  <SignupContent pager={props.pager}>
+  <SignupContent>
     <div>
       <Header>Upload, take, or choose 10 pictures of yourself.</Header>
     </div>
@@ -194,7 +191,7 @@ const upload = (file, pics, change) => {
 }
 
 const Location = (props) => (
-  <SignupContent pager={props.pager}>
+  <SignupContent>
     <div>
       <Header>
         What is your location, and how far will you travel for a date
@@ -226,7 +223,7 @@ const Traits = (props) => {
     traitText = "How about 5 things you just cannot stand?"
   }
   return (
-    <SignupContent pager={props.pager}>
+    <SignupContent>
       <div>
         <Header>{traitText}</Header>
         <div>Use single words.</div>
@@ -252,7 +249,7 @@ const Traits = (props) => {
 }
 
 const Money = (props) => (
-  <SignupContent pager={props.pager}>
+  <SignupContent>
     <div>
       <Header>About how much are you willing to spend on a date?</Header>
       <div>You can change this later.</div>
@@ -267,7 +264,7 @@ const Money = (props) => (
 )
 
 const Gender = (props) => (
-  <SignupContent pager={props.pager}>
+  <SignupContent>
     <div>
       <Header>What are you looking for?</Header>
       <div>You can select more than one.</div>
@@ -296,7 +293,7 @@ const GenderButtons = (props) => (
 )
 
 const Age = (props) => (
-  <SignupContent pager={props.pager}>
+  <SignupContent>
     <div>
       <Header>How old are you?</Header>
       <div>What age range are you looking for?</div>
@@ -315,7 +312,7 @@ const Age = (props) => (
 )
 
 const Schedule = (props) => (
-  <SignupContent pager={props.pager}>
+  <SignupContent>
     <div>
       <Header>What time are you available each day for dates?</Header>
       <div>You can adjust this later.</div>
@@ -335,11 +332,11 @@ const Submit = (props) => {
   return (
     <SignupContent>
       <div>
-        {Object.keys(props.info).map((item, i) => (
-          <div key={i}>
-            {item}: {props.info[item]}
-          </div>
-        ))}
+        <div>email: {props.info.email}</div>
+        <div>range: {props.info.range}</div>
+        <div>latitude: {props.info.latitude}</div>
+        <div>longitude: {props.info.longitude}</div>
+        <div>budget: {props.info.budget}</div>
         <Button primary click={props.consume}>Create Account</Button>
       </div>
       <div></div>
