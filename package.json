@@ -10,7 +10,9 @@
     "react-dropzone": "^4.2.3",
     "react-router-dom": "^4.2.2",
     "react-scripts": "^1.0.14",
-    "superagent": "^3.8.1"
+    "react-swipe": "^5.1.1",
+    "superagent": "^3.8.1",
+    "swipe-js-iso": "^2.0.4"
   },
   "scripts": {
     "predeploy": "npm run build",
