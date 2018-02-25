@@ -85,6 +85,7 @@ input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
     height: 16px;
     width: 16px;
+    border: none;
     border-radius: 8px;
     background: #61c5c1;
     margin-top: -8px;
