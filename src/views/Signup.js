@@ -48,7 +48,7 @@ export default class Signup extends Component {
   })
   setGender = (e) => this.setState({gender: e.target.id})
   setSeeking = (e) => this.setState({seeking: e.target.id})
-  setPictures = (pics) => this.setState({pictures: pics})
+  setPictures = (p) => this.setState({pictures: [...this.state.pictures, p]})
 
   consume = () => {
     consumer('user/', 'POST', this.state)
@@ -155,9 +155,9 @@ const Pictures = (props) => (
     <div>
       <Dropzone
         className="dropzone"
-        multiple={false}
+        multiple={true}
         accept="image/png,image/jpeg"
-        onDrop={(files) => upload(files[0], props.pics, props.change)}>
+        onDrop={(files) => upload(files, props.change)}>
         <img src={camera} alt='camera' />
       </Dropzone>
       <div className='upload-pics-wrapper' >{props.pics.map((item, i) => (
@@ -167,27 +167,29 @@ const Pictures = (props) => (
   </SignupContent>
 )
 
-const upload = (file, pics, change) => {
+const upload = (files, change) => {
   const preset = 'sxeg1qhp'
   const url = 'https://api.cloudinary.com/v1_1/dutch-pictures/upload'
-  let img = new Image()
-  img.src = window.URL.createObjectURL( file );
-  img.onload = () => {
-    if (img.naturalHeight !== img.naturalWidth) {
-      alert("Image must be square")
-      return
+  for (let i = files.length - 1; i >= 0; i--) {
+    let img = new Image()
+    img.src = window.URL.createObjectURL( files[i] );
+    img.onload = () => {
+      if (img.naturalHeight !== img.naturalWidth) {
+        alert("Image must be square")
+        return
+      }
+      let upload = request.post(url)
+                          .field('upload_preset', preset)
+                          .field('file', files[i])
+      upload.end((err, response) => {
+        if (err) {
+          throw new Error(err)
+        }
+        if (response.body.secure_url !== '') {
+          change(response.body.secure_url)
+        }
+      })
     }
-    let upload = request.post(url)
-                        .field('upload_preset', preset)
-                        .field('file', file)
-    upload.end((err, response) => {
-      if (err) {
-        throw new Error(err)
-      }
-      if (response.body.secure_url !== '') {
-        change(pics.concat(response.body.secure_url))
-      }
-    })
   }
 }
 
