@@ -97,7 +97,8 @@ export default class Signup extends Component {
           <Column size='u-md-1-4' />
         </Grid>
         <ReactSwipe ref={reactSwipe => this.swipe = reactSwipe}
-          swipeOptions={{ callback: this.updatePos }}>
+          swipeOptions={{ callback: this.updatePos, continuous: false,
+            disableScroll: true }}>
           {pages}
         </ReactSwipe>
         <div className='signup-next'>
