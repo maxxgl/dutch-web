@@ -46,9 +46,7 @@ export default class Home extends Component {
   day = new Date().toLocaleString('en-us', {  weekday: 'long' })
   tiles = () => (
     <main>
-      <div id='flavor-wrapper'>
-          <div id='home-flavor-text'>Matches for {this.day}</div>
-      </div>
+      <div id='day-text'>Matches for {this.day}</div>
       {this.state.prospects.map((p, i) => (
         <Tile key={i} pic={p.pics[0]} index={i}
           remove={this.state.remove.filter(id => id === p.match.$oid)} />
