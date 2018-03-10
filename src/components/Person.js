@@ -14,25 +14,26 @@ export default class Home extends Component {
   }
 
   handleCancel = () => this.props.cancel(this.props.prospect)
-  
+
   slide = (i) => {
     this.swipe.slide(i)
     this.updatePos()
   }
   updatePos = () => this.setState({ pos: this.swipe.getPos() })
 
+  pics = this.props.pics.map((pic, i) => (
+    <img className='home-img' src={pic} key={i} alt='person' />
+  ))
+
   render() {
-    const pics = this.props.pics.map((pic, i) => (
-        <img className='home-img' src={pic} key={i} alt='person' />
-      ))
     return (
       <div className={'circle-column'}>
         <ReactSwipe ref={reactSwipe => this.swipe = reactSwipe}
           swipeOptions={{ callback: this.updatePos }}>
-          {pics}
+          {this.pics}
         </ReactSwipe>
         <Circles pageCount={this.props.pics.length} page={this.state.pos}
-          base={'/home/' + this.props.prospect + '/'} slide={this.slide} />
+          slide={this.slide} />
         <div>
           <Link to='/home'>
             <img className='back person-nav' src={back} alt='back' />
