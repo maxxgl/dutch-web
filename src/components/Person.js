@@ -13,7 +13,7 @@ export default class Home extends Component {
     this.state = { pos: 0 }
   }
 
-  handleCancel = () => this.props.cancel(this.props.prospect)
+  handleCancel = () => this.props.cancel(this.props.match.$oid)
 
   slide = (i) => {
     this.swipe.slide(i)
