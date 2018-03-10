@@ -49,9 +49,9 @@ export default class Home extends Component {
       <div id='flavor-wrapper'>
           <div id='home-flavor-text'>Matches for {this.day}</div>
       </div>
-      {this.state.prospects.map((prospect, index) => (
-        <Tile key={index} pic={prospect.pics[0]} index={index}
-          remove={this.state.remove[index]} />
+      {this.state.prospects.map((p, i) => (
+        <Tile key={i} pic={p.pics[0]} index={i}
+          remove={this.state.remove.filter(id => id === p.match.$oid)} />
       ))}
       <div className={'home-tile back' + this.state.remove.length}
         id='refresh-button'>
@@ -83,7 +83,7 @@ export default class Home extends Component {
 
 const Tile = (props) => (
   <Link to={'/home/' + props.index} className='home-tile' >
-    <img className={'home-img' + (props.remove ? ' remove' : '')}
+    <img className={'home-img' + (props.remove.length ? ' remove' : '')}
       src={props.pic} alt='girl' />
   </Link>
 )
