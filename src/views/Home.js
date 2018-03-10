@@ -74,12 +74,10 @@ export default class Home extends Component {
 
   prospect = (props) => {
     const i = parseInt(props.match.params.number, 10)
-    const j = parseInt(props.match.params.pic, 10)
-    const picLength = this.state.prospects[i].pics.length
-    if (!(i >= 0 && i < 5) || !(j >= 0 && j < picLength)) {
+    if (i < 0 || i >= this.state.prospects) {
       return <Redirect to='/home' />
     }
-    return <Person pics={this.state.prospects[i].pics} prospect={i} pic={j}
+    return <Person pics={this.state.prospects[i].pics} prospect={i}
       cancel={this.onCancel} />
   }
 
@@ -89,9 +87,8 @@ export default class Home extends Component {
         <Head />
         <Switch>
           <Route exact path='/home' component={this.tiles}/>
-          <Route exact path='/home/:number' component={(props) => (
-            <Redirect to={'/home/' + props.match.params.number + '/0'} />)} />
-          <Route exact path='/home/:number/:pic' component={this.prospect} />
+          <Route exact path='/home/:number' component={this.prospect} />
+          <Route path="/" component={() => <Redirect to="/home" />} />
         </Switch>
       </Fullpage>
     )
@@ -99,7 +96,7 @@ export default class Home extends Component {
 }
 
 const Tile = (props) => (
-  <Link to={'/home/' + props.index + '/0'} className='home-tile' >
+  <Link to={'/home/' + props.index} className='home-tile' >
     <img className={'home-img' + (props.remove ? ' remove' : '')}
       src={props.pic} alt='girl' />
   </Link>
