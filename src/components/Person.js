@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import '../css/Person.css'
+import { Link } from 'react-router-dom'
 import ReactSwipe from 'react-swipe'
 import circle from '../static/circle.svg'
 import circleGreen from '../static/circle_green.svg'
 import cancel from '../static/cancel_icon_white.svg'
+import back from '../static/next_icon.svg'
 
 export default class Home extends Component {
   constructor(props) {
@@ -31,8 +33,11 @@ export default class Home extends Component {
         </ReactSwipe>
         <Circles pageCount={this.props.pics.length} page={this.state.pos}
           base={'/home/' + this.props.prospect + '/'} slide={this.slide} />
-        <div className={'cancel-wrapper'}>
-          <img className='cancel' src={cancel} onClick={this.handleCancel}
+        <div>
+          <Link to='/home'>
+            <img className='back person-nav' src={back} alt='back' />
+          </Link>
+          <img className='person-nav' src={cancel} onClick={this.handleCancel}
             id={this.props.pic} alt='cancel' />
         </div>
       </div>
