@@ -37,8 +37,13 @@ export default class Home extends Component {
 
   onCancel = (id) => {
     let ids = this.state.remove
-    while (ids.length > 1) ids.shift()
-    ids.push(id)
+    const i = this.state.remove.indexOf(id)
+    if (i !== -1) {
+      ids.splice(i, 1)
+    } else {
+      while (ids.length > 1) ids.shift()
+      ids.push(id)
+    }
     this.setState({ remove: ids })
     window.location.hash = '#/home'
   }
@@ -64,7 +69,9 @@ export default class Home extends Component {
     if (i < 0 || i >= this.state.prospects.length) {
       return <Redirect to='/home' />
     }
-    return <Person {...this.state.prospects[i]} cancel={this.onCancel} />
+    const p = this.state.prospects[i]
+    return <Person {...p} cancel={this.onCancel}
+      removed={this.state.remove.filter(id => id === p.match.$oid)} />
   }
 
   render = () => (

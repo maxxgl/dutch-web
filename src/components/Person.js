@@ -6,6 +6,7 @@ import circle from '../static/circle.svg'
 import circleGreen from '../static/circle_green.svg'
 import cancel from '../static/cancel_icon_white.svg'
 import back from '../static/next_icon.svg'
+import check from '../static/confirm_icon_dark.svg'
 
 export default class Home extends Component {
   constructor(props) {
@@ -38,8 +39,8 @@ export default class Home extends Component {
           <Link to='/home'>
             <img className='back person-nav' src={back} alt='back' />
           </Link>
-          <img className='person-nav' src={cancel} onClick={this.handleCancel}
-            id={this.props.pic} alt='cancel' />
+          <img className='person-nav' alt='cancel' onClick={this.handleCancel}
+            src={this.props.removed.length ? check : cancel} />
         </div>
       </div>
     )
