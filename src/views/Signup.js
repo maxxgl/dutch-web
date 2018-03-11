@@ -24,7 +24,7 @@ export default class Signup extends Component {
   constructor(props) {
     super(props)
     this.state = { pos: 0, firstName: '', lastName: '', email: '',  age: 0,
-      password: '', pictures: [], range: 25, latitude: '', longitude: '',
+      password: '', pictures: [], range: 40, latitude: '', longitude: '',
       likes: [], dislikes: [], budget: 0, gender: '', seeking: '', youngest: 0,
       oldest: 0, submitted: 0, start: '', end: '' }
   }
@@ -210,9 +210,9 @@ const Location = (props) => (
       <div className='range-wrapper'>
         <span className='label'>0</span>
         <input type='range' onChange={props.change} name='range'
-          value={props.range} min='0' max='50' />
+          value={props.range} min='0' max='80' />
         <span className='label'>50</span>
-        <Header>{props.range} km</Header>
+        <Header>{Math.floor(props.range / 1.6)} mi</Header>
       </div>
     </div>
   </SignupContent>
@@ -336,7 +336,7 @@ const Submit = (props) => {
     <SignupContent>
       <div>
         <div>email: {props.info.email}</div>
-        <div>range: {props.info.range}</div>
+        <div>range: {Math.floor(props.info.range / 1.6)}</div>
         <div>latitude: {props.info.latitude}</div>
         <div>longitude: {props.info.longitude}</div>
         <div>budget: {props.info.budget}</div>
