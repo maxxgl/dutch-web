@@ -112,6 +112,24 @@ input[type=range]::-webkit-slider-thumb {
     width: 25%;
 }
 
+#schedule {
+    display: grid;
+    grid-template-rows: repeat(8, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: .25em;
+}
+
+.sched-entry {
+    padding: .4em 0;
+    border-radius: 1px;
+    border: solid 1px #dbdbd7;
+}
+
+.selected {
+    background-color: #69C4A5;
+    border: solid 1px white;
+}
+
 #submit-box {
     height: 50vh;
     background-color: #61c5c1;

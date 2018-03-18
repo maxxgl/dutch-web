@@ -26,7 +26,7 @@ export default class Signup extends Component {
     this.state = { pos: 0, firstName: '', lastName: '', email: '',  age: 0,
       password: '', pictures: [], range: 40, latitude: '', longitude: '',
       likes: [], dislikes: [], budget: 0, gender: '', seeking: '', youngest: 0,
-      oldest: 0, submitted: 0, start: '', end: '' }
+      oldest: 0, submitted: 0, schedule: [[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false]] }
   }
 
   nextPage = () => this.swipe.next()
@@ -49,6 +49,11 @@ export default class Signup extends Component {
   setGender = (e) => this.setState({gender: e.target.id})
   setSeeking = (e) => this.setState({seeking: e.target.id})
   setPictures = (p) => this.setState({pictures: [...this.state.pictures, p]})
+  setTime = (i, j) => {
+    let sched = this.state.schedule
+    sched[i][j] = !this.state.schedule[i][j]
+    this.setState({schedule: sched})
+  }
 
   consume = () => {
     consumer('user/', 'POST', this.state)
@@ -75,8 +80,7 @@ export default class Signup extends Component {
         setSeeking={this.setSeeking} gender={this.state.gender}
         seeking={this.state.seeking} />,
       <Age change={this.onChange} />,
-      <Schedule change={this.onChange} start={this.state.start}
-        end={this.state.end} />,
+      <Schedule change={this.setTime} schedule={this.state.schedule} />,
       <Submit info={this.state} consume={this.consume} />
     ]).map((item, i) => <div key={i}>{item}</div>)
     return (
@@ -314,16 +318,24 @@ const Age = (props) => (
   </SignupContent>
 )
 
+const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 const Schedule = (props) => (
   <SignupContent>
     <div>
-      <Header>What time are you available each day for dates?</Header>
+      <Header>What times are you available?</Header>
       <div>You can adjust this later.</div>
     </div>
-    <div>
-      <input type="time" onChange={props.change} name='start'/>
-      <Header>to</Header>
-      <input type="time" onChange={props.change} name='end'/>
+    <div id='schedule'>
+      <div>8-10am</div><div>11am-2pm</div><div>2-5pm</div><div>6-9pm</div>
+      {props.schedule.map((d, i) =>
+        d.map((e, j) => (
+          <div key={i + '-' + j} name={i} j={j}
+            onClick={() => props.change(i, j)}
+            className= {'sched-entry' + (e ? ' selected' : '')}>
+            {days[i]}
+          </div>
+        )))
+      }
     </div>
   </SignupContent>
 )
