@@ -326,7 +326,7 @@ const Schedule = (props) => (
       <div>You can adjust this later.</div>
     </div>
     <div id='schedule'>
-      <div>8-10am</div><div>11am-2pm</div><div>2-5pm</div><div>6-9pm</div>
+      <div>8-10am</div><div>11-2pm</div><div>2-5pm</div><div>6-9pm</div>
       {props.schedule.map((d, i) =>
         d.map((e, j) => (
           <div key={i + '-' + j} name={i} j={j}
