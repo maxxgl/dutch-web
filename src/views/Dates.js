@@ -43,7 +43,7 @@ const DateEntry = (props) => (
       let toggle = display === 'block' ? 'none' : 'block'
       e.currentTarget.nextSibling.style.display = toggle
     }}>
-      {datetime(props.data.time.$date)}
+      {datetime(props.data.time)}
       <img src={expand} className='expand' alt='expand'/>
     </div>
     <div className='date-info'>
