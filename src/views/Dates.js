@@ -29,21 +29,21 @@ export default class Dates extends Component {
         <Head />
         <div id='dim'>Upcoming Dates</div>
         {this.state.dates.map((date, index) => (
-          <Date key={index} {...date} />
+          <DateEntry key={index} {...date} />
         ))}
       </Fullpage>
     )
   }
 }
 
-const Date = (props) => (
+const DateEntry = (props) => (
   <div className='date'>
     <div onClick={(e) => {
       let display = e.currentTarget.nextSibling.style.display
       let toggle = display === 'block' ? 'none' : 'block'
       e.currentTarget.nextSibling.style.display = toggle
     }}>
-      {props.data.time}
+      {datetime(props.data.time.$date)}
       <img src={expand} className='expand' alt='expand'/>
     </div>
     <div className='date-info'>
@@ -63,6 +63,13 @@ const Date = (props) => (
     </div>
   </div>
 )
+
+const datetime = (t) => {
+  const date = new Date(t)
+  const options = { weekday: 'long', month: 'long', day: 'numeric',
+    hour: 'numeric', minute: 'numeric' }
+  return date.toLocaleString('en-us', options)
+}
 
 const checkin = (id) => {
   navigator.geolocation.getCurrentPosition((p) => {
