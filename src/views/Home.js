@@ -28,9 +28,14 @@ export default class Home extends Component {
   }
 
   shuffle = () => {
-    this.onChange(true)
     const ids = this.state.remove
     const method = ids.length === 2 ? 'POST' : 'PUT'
+    if (method === 'PUT') {
+      if (!window.confirm("You sure? This will reshuffle your matches.")) {
+        return
+      }
+    }
+    this.onChange(true)
     consumer('user/' + this.userId + '/match/', method, { ids: ids })
       .then((response) => {
         if (response) {
