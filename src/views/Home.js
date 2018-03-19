@@ -11,20 +11,24 @@ import confirm from '../static/confirm_icon.svg'
 export default class Home extends Component {
   constructor(props) {
     super(props)
-    this.state = { prospects: [], remove: [] }
+    this.state = { prospects: [], remove: [], loading: false }
     this.consume()
   }
   userId = localStorage.getItem('userId')
+  
+  onChange = (b) => this.setState({loading: b})
 
   consume = () => {
     consumer('user/' + this.userId + '/match/', 'GET', "")
       .then((response) => {
+        this.onChange(false)
         if (response) {
           this.setState({ prospects: response })
         }})
   }
 
   shuffle = () => {
+    this.onChange(true)
     const ids = this.state.remove
     const method = ids.length === 2 ? 'POST' : 'PUT'
     consumer('user/' + this.userId + '/match/', method, { ids: ids })
@@ -76,6 +80,7 @@ export default class Home extends Component {
 
   render = () => (
     <Fullpage>
+      {this.state.loading ? (<div id='loading' />) : null}
       <Head />
       <Switch>
         <Route exact path='/home' component={this.tiles}/>
