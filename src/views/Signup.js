@@ -54,20 +54,17 @@ export default class Signup extends Component {
 
   render() {
     const pages = ([
-      <Email change={this.onChange} 
-        email={this.state.email} password={this.state.password} />,
+      <Email change={this.onChange} email={this.state.email}
+        password={this.state.password} />,
       <Pictures change={this.setPictures} pics={this.state.pictures} />,
       <Location change={this.onChange} range={this.state.range}
         setLocation={this.setLocation} latitude={this.state.latitude}
         longitude={this.state.longitude} />,
-      <Traits change={this.onChange} traits={this.state.likes}
-        newTrait={this.newTrait} />,
-      <Traits change={this.onChange} traits={this.state.dislikes}
-        newTrait={this.newTrait} dislike />,
+      <Traits traits={this.state.likes} newTrait={this.newTrait} />,
+      <Traits traits={this.state.dislikes} newTrait={this.newTrait} dislike />,
       <Money change={this.onChange} />,
-      <Gender change={this.onChange} setGender={this.setGender}
-        setSeeking={this.setSeeking} gender={this.state.gender}
-        seeking={this.state.seeking} />,
+      <Gender setGender={this.setGender} setSeeking={this.setSeeking}
+        gender={this.state.gender} seeking={this.state.seeking} />,
       <Age change={this.onChange} />,
       <Schedule change={this.setTime} schedule={this.state.schedule} />,
       <Submit info={this.state} consume={this.consume} />
