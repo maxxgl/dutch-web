@@ -5,6 +5,7 @@ import { Grid, Column } from '../components/Grid'
 import ReactSwipe from 'react-swipe'
 import logo from '../static/logotype_green.svg'
 import next from '../static/next_icon.svg'
+import nonext from '../static/nonext_icon.svg'
 import { consumer } from '../utils/consumer'
 import { Email, Pictures, Location, Traits, Money, Gender, Age, Schedule,
   Circles, Submit } from '../components/SignupFields'
@@ -12,15 +13,15 @@ import { Email, Pictures, Location, Traits, Money, Gender, Age, Schedule,
 export default class Signup extends Component {
   constructor(props) {
     super(props)
-    this.state = { pos: 0, firstName: '', lastName: '', email: '',  age: 0,
+    this.state = { pos: 0, limit: 0, firstName: '', lastName: '', email: '',  age: 0,
       password: '', pictures: [], range: 40, latitude: '', longitude: '',
       likes: [], dislikes: [], budget: 0, gender: '', seeking: '', youngest: 0,
       oldest: 0, submitted: 0, schedule: [[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false]] }
   }
 
-  nextPage = () => this.swipe.next()
   updatePos = () => this.setState({ pos: this.swipe.getPos() })
   slide = (i) => {
+    if (i > this.state.limit) return
     this.swipe.slide(i)
     this.updatePos()
   }
@@ -93,7 +94,9 @@ export default class Signup extends Component {
           {pages}
         </ReactSwipe>
         <div className='signup-next'>
-          <img src={next} onClick={this.nextPage} alt='next' id='next'/>
+          <img src={this.state.pos >= this.state.limit ? nonext : next}
+            alt='next' id='next'
+            onClick={() => this.slide(this.state.pos + 1)} />
         </div>
       </Fullpage>
     )
