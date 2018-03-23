@@ -13,15 +13,16 @@ import { Email, Pictures, Location, Traits, Money, Gender, Age, Schedule,
 export default class Signup extends Component {
   constructor(props) {
     super(props)
-    this.state = { pos: 0, limit: 0, firstName: '', lastName: '', email: '',  age: 0,
+    this.state = { pos: 0, firstName: '', lastName: '', email: '',  age: 0,
       password: '', pictures: [], range: 40, latitude: '', longitude: '',
       likes: [], dislikes: [], budget: 0, gender: '', seeking: '', youngest: 0,
-      oldest: 0, submitted: 0, schedule: [[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false]] }
+      oldest: 0, submitted: 0,  valid: new Array(9).fill(0),
+      schedule: [[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false]],}
   }
 
   updatePos = () => this.setState({ pos: this.swipe.getPos() })
   slide = (i) => {
-    if (i > this.state.limit) return
+    if (i > this.state.valid.indexOf(0)) return
     this.swipe.slide(i)
     this.updatePos()
   }
@@ -70,7 +71,8 @@ export default class Signup extends Component {
       <Schedule change={this.setTime} schedule={this.state.schedule} />,
       <Submit info={this.state} consume={this.consume} />
     ]).map((item, i) => <div key={i}>{item}</div>)
-
+  
+    const nextOrNo = this.state.pos >= this.state.valid.indexOf(0)
     return (
       <Fullpage>
         <Grid>
@@ -94,7 +96,7 @@ export default class Signup extends Component {
           {pages}
         </ReactSwipe>
         <div className='signup-next'>
-          <img src={this.state.pos >= this.state.limit ? nonext : next}
+          <img src={nextOrNo ? nonext : next}
             alt='next' id='next'
             onClick={() => this.slide(this.state.pos + 1)} />
         </div>
