@@ -20,6 +20,11 @@ export default class Signup extends Component {
       schedule: [[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false]],}
   }
 
+  valid = (i, val) => {
+    let oldValid = this.state.valid
+    oldValid[i] = val
+    this.setState({ valid: oldValid })
+  }
   updatePos = () => this.setState({ pos: this.swipe.getPos() })
   slide = (i) => {
     if (i > this.state.valid.indexOf(0)) return
@@ -70,8 +75,10 @@ export default class Signup extends Component {
       <Age change={this.onChange} />,
       <Schedule change={this.setTime} schedule={this.state.schedule} />,
       <Submit info={this.state} consume={this.consume} />
-    ]).map((item, i) => <div key={i}>{item}</div>)
-  
+    ]).map((item, i) => <div key={i}>
+      {React.cloneElement(item, {id: i, valid: this.valid })}
+    </div>)
+
     const nextOrNo = this.state.pos >= this.state.valid.indexOf(0)
     return (
       <Fullpage>
