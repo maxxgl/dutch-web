@@ -20,7 +20,7 @@ export const Circles = (props) => {
     let circleType = i === props.page ? circleGreen : circle
     circles.push(
       <img key={i} alt='circle' className='circle' src={circleType}
-        onClick={() => props.slide(i)}/>
+        onClick={() => i <= props.valid ? props.slide(i) : null}/>
     )
   }
   return circles
