@@ -114,7 +114,7 @@ export default class Signup extends Component {
           swipeOptions={{ callback: this.updatePos, continuous: false,
             disableScroll: true }}>
           {pages.map((item, i) => <div key={i}>
-            {React.cloneElement(item, {id: i })}
+            {React.cloneElement(item, {id: i, valid: valid[i] })}
           </div>)}
         </ReactSwipe>
         <div className='signup-next'>
