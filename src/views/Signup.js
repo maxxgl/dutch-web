@@ -16,15 +16,9 @@ export default class Signup extends Component {
     this.state = { pos: 0, firstName: '', lastName: '', email: '',  age: 0,
       password: '', pictures: [], range: 40, latitude: '', longitude: '',
       likes: [], dislikes: [], budget: 0, gender: '', seeking: '', youngest: 0,
-      oldest: 0, submitted: 0,  valid: new Array(9).fill(0),
-      schedule: [[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false]],}
+      oldest: 0, submitted: 0, schedule: [[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false],[false, false, false, false]],}
   }
 
-  valid = (i, val) => {
-    let oldValid = this.state.valid
-    oldValid[i] = val
-    this.setState({ valid: oldValid })
-  }
   updatePos = () => this.setState({ pos: this.swipe.getPos() })
   slide = (i) => {
     if (i > this.state.valid.indexOf(0)) return
@@ -38,7 +32,7 @@ export default class Signup extends Component {
     list.push(value)
     this.setState({[name]: list})
   }
-        
+
   setLocation = () => navigator.geolocation.getCurrentPosition((p) => {
     this.setState({latitude: p.coords.latitude, longitude: p.coords.longitude})
   })
@@ -60,7 +54,7 @@ export default class Signup extends Component {
   }   
 
   render() {
-    const pages = ([
+    const pages = [
       <Email change={this.onChange} email={this.state.email}
         password={this.state.password} />,
       <Pictures change={this.setPictures} pics={this.state.pictures} />,
@@ -75,11 +69,16 @@ export default class Signup extends Component {
       <Age change={this.onChange} />,
       <Schedule change={this.setTime} schedule={this.state.schedule} />,
       <Submit info={this.state} consume={this.consume} />
-    ]).map((item, i) => <div key={i}>
-      {React.cloneElement(item, {id: i, valid: this.valid })}
-    </div>)
+    ]
 
-    const nextOrNo = this.state.pos >= this.state.valid.indexOf(0)
+    let valid = new Array(pages.length).fill(false)
+
+    if (this.state.email !== "") {
+      valid[0] = true
+    }  else {
+      // this.valid(0, true)
+    }
+
     return (
       <Fullpage>
         <Grid>
@@ -100,10 +99,12 @@ export default class Signup extends Component {
         <ReactSwipe ref={reactSwipe => this.swipe = reactSwipe}
           swipeOptions={{ callback: this.updatePos, continuous: false,
             disableScroll: true }}>
-          {pages}
+          {pages.map((item, i) => <div key={i}>
+            {React.cloneElement(item, {id: i, valid: valid[i] })}
+          </div>)}
         </ReactSwipe>
         <div className='signup-next'>
-          <img src={nextOrNo ? nonext : next}
+          <img src={this.state.pos >= valid.indexOf(true) ? nonext : next}
             alt='next' id='next'
             onClick={() => this.slide(this.state.pos + 1)} />
         </div>
