@@ -21,7 +21,6 @@ export default class Signup extends Component {
 
   updatePos = () => this.setState({ pos: this.swipe.getPos() })
   slide = (i) => {
-    if (i > this.state.valid.indexOf(0)) return
     this.swipe.slide(i)
     this.updatePos()
   }
@@ -71,14 +70,15 @@ export default class Signup extends Component {
       <Submit info={this.state} consume={this.consume} />
     ]
 
-    let valid = new Array(pages.length).fill(false)
+    let valid = new Array(pages.length).fill()
+    valid.forEach((val, i) => valid[i] = {})
 
-    if (this.state.email !== "") {
-      valid[0] = true
-    }  else {
-      // this.valid(0, true)
-    }
+    valid[0].email = this.state.email !== ""
+    valid[0].password = this.state.password.length > 4
 
+    valid[1].pictures = this.state.pictures.length > 0
+
+    const validPos = validatePos(valid)
     return (
       <Fullpage>
         <Grid>
@@ -90,7 +90,7 @@ export default class Signup extends Component {
               <Circles
                 page={this.state.pos}
                 pageCount={this.swipe ? this.swipe.getNumSlides() : 10}
-                slide={this.slide}
+                slide={this.slide} valid={validPos}
               />
             </nav>
           </Column>
@@ -100,15 +100,26 @@ export default class Signup extends Component {
           swipeOptions={{ callback: this.updatePos, continuous: false,
             disableScroll: true }}>
           {pages.map((item, i) => <div key={i}>
-            {React.cloneElement(item, {id: i, valid: valid[i] })}
+            {React.cloneElement(item, {id: i })}
           </div>)}
         </ReactSwipe>
         <div className='signup-next'>
-          <img src={this.state.pos >= valid.indexOf(true) ? nonext : next}
-            alt='next' id='next'
-            onClick={() => this.slide(this.state.pos + 1)} />
+          {this.state.pos < validPos ? <img src={next} alt='next' id='next'
+            onClick={() => this.slide(this.state.pos + 1)} /> :
+            <img src={nonext} alt='next' id='next'/>}
         </div>
       </Fullpage>
     )
   }
+}
+
+const validatePos = (valid) => {
+  for (var i = 0; i < valid.length; i++) {
+    for (let k in valid[i]){
+      if (valid[i][k] !== true) {
+        return i
+      }
+    }
+  }
+  return 0
 }
