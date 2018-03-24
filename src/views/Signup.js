@@ -73,11 +73,25 @@ export default class Signup extends Component {
     let valid = new Array(pages.length).fill()
     valid.forEach((val, i) => valid[i] = {})
 
-    valid[0].email = this.state.email !== ""
+    valid[0].email = this.state.email.length > 2
     valid[0].password = this.state.password.length > 4
 
     valid[1].pictures = this.state.pictures.length > 0
 
+    valid[2].latitude = this.state.latitude !== ''
+    valid[2].longitude = this.state.longitude !== ''
+
+    valid[3].likes = this.state.likes.length > 2
+    valid[4].likes = this.state.dislikes.length > 2
+
+    valid[6].gender = this.state.gender !== ''
+    valid[6].seeking = this.state.seeking !== ''
+
+    valid[7].age = this.state.age > 17
+    valid[7].youngest = this.state.youngest > 17
+    valid[7].oldest = this.state.oldest >= this.state.youngest
+
+    valid[9].end = false
     const validPos = validatePos(valid)
     return (
       <Fullpage>
