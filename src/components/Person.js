@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import '../css/Person.css'
 import { Link } from 'react-router-dom'
 import ReactSwipe from 'react-swipe'
-import circle from '../static/circle.svg'
+import circle from '../static/circle_white.svg'
 import circleGreen from '../static/circle_green.svg'
-import cancel from '../static/cancel_icon_white.svg'
-import back from '../static/next_icon.svg'
-import check from '../static/confirm_icon_dark.svg'
+import cancel from '../static/cancel_icon.svg'
+import back from '../static/next_icon_white.svg'
+import check from '../static/confirm_icon_green.svg'
 
 export default class Home extends Component {
   constructor(props) {
