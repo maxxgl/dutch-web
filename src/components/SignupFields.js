@@ -2,6 +2,8 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { Grid, Column } from '../components/Grid'
 import Dropzone from 'react-dropzone';
+import Cropper from 'react-cropper';
+import 'cropperjs/dist/cropper.css';
 import request from 'superagent';
 import circle from '../static/circle.svg'
 import circleGreen from '../static/circle_green.svg'
@@ -52,50 +54,46 @@ export const Email = (props) => (
   </SignupContent>
 )
 
-export const Pictures = (props) => (
-  <SignupContent>
-    <div>
-      <Header>Upload, take, or choose 10 pictures of yourself.</Header>
-    </div>
-    <div>
-      <Dropzone
-        className="dropzone"
-        multiple={true}
-        accept="image/png,image/jpeg"
-        onDrop={(files) => upload(files, props.change)}>
-        <img src={camera} alt='camera' />
-      </Dropzone>
-      <div className='upload-pics-wrapper' >{props.pics.map((item, i) => (
-        <img key={i} src={item} alt='upload' className='upload-pic'/>
-      ))}</div>
-    </div>
-  </SignupContent>
-)
+export class Pictures extends React.Component {
+  state = { pic: '', croppedPic: '' }
 
-export const upload = (files, change) => {
-  const preset = 'sxeg1qhp'
-  const url = 'https://api.cloudinary.com/v1_1/dutch-pictures/upload'
-  for (let i = files.length - 1; i >= 0; i--) {
-    let img = new Image()
-    img.src = window.URL.createObjectURL( files[i] );
-    img.onload = () => {
-      if (img.naturalHeight !== img.naturalWidth) {
-        alert("Image must be square")
-        return
-      }
-      let upload = request.post(url)
-                          .field('upload_preset', preset)
-                          .field('file', files[i])
-      upload.end((err, response) => {
-        if (err) {
-          throw new Error(err)
-        }
-        if (response.body.secure_url !== '') {
-          change(response.body.secure_url)
-        }
-      })
-    }
+  crop = () => this.setState({ croppedPic: this.refs.cropper.getCroppedCanvas().toDataURL() })
+
+  upload = () => {
+    const url = 'https://api.cloudinary.com/v1_1/dutch-pictures/upload'
+    let upload = request.post(url).field('upload_preset', 'sxeg1qhp')
+                        .field('file', this.state.croppedPic)
+    upload.end((err, response) => {
+      if (err) {throw new Error(err)}
+      if (response.body.secure_url !== '') {
+        this.props.change(response.body.secure_url)
+    }})
+    this.setState({pic: '', croppedPic: ''})
   }
+
+  render = () => (
+     <SignupContent>
+      <Header>Upload, take, or choose 10 pictures of yourself.</Header>
+      <div>
+        <Dropzone className="dropzone" accept="image/png,image/jpeg"
+          onDrop={(files) => this.setState({ pic: files[0].preview})}>
+          <img src={camera} alt='camera' />
+        </Dropzone>
+        {this.state.pic === '' ? null :
+          <div>
+            <Cropper ref='cropper'
+              src={this.state.pic}
+              aspectRatio={1 / 1}
+              style={{width: '100%', height: '80vw'}}
+              crop={this.crop} />
+            <Button primary click={this.upload}>Add Pic</Button>
+          </div>}
+        <div className='upload-pics-wrapper' >{this.props.pics.map((item, i) => (
+          <img key={i} src={item} alt='upload' className='upload-pic'/>
+        ))}</div>
+      </div>
+    </SignupContent>
+  )
 }
 
 export const Location = (props) => (
