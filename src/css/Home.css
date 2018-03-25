@@ -67,9 +67,12 @@ main > div {
         grid-column-start: 1;
         grid-column-end: 2;
         grid-row-start: 1;
-        grid-row-end: 3;
+        grid-row-end: -1;
         font-size: 2em;
         padding: 1em;
+        height: 100%;
+        width: calc(100vw - 3*(50vh - 0.75em));
+        min-width: 5em;
         background-color: #61c5c1;
     }
 }
