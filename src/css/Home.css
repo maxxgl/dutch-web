@@ -1,5 +1,24 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 body::-webkit-scrollbar {
   display: none;
+}
+
+main {
+    display: grid;
+    grid-template-rows: min-content 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+}
+
+main > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .home-img {
@@ -8,27 +27,14 @@ body::-webkit-scrollbar {
     display: block;
 }
 
-.home-tile {
-    width: 50vw;
-    height: 50vw;
-    float: left;
-    max-width: 100%;
-}
-
 #day-text {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    height: calc(100vh - 2em - 3*50vw);
+    min-height: min-content;
     font-size: 1.5em;
-    text-align: center;
     color: white;
-    background-color: #343534;
     font-weight: 100;
-    line-height: 1.7;
-}
-
-#refresh-button {
-    background-color: #343534;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .back2 {
@@ -51,25 +57,19 @@ body::-webkit-scrollbar {
     z-index: 90;
 }
 
-@media screen and (min-width: 70em) {
-    .home-tile {
-        height: calc((100vh - 3rem)/2);
-        width: calc((100vh - 3rem)/2);
-        float: left;
+@media screen and (min-width: 800px) {
+    main {
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: min-content 1fr 1fr 1fr;
     }
 
-    #flavor-wrapper {
-        display: inline-block;
-        float: left;
-        box-sizing: border-box;
+    #day-text {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 3;
         font-size: 2em;
-        height: calc(100vh - 3rem);
-        width: calc(100vw - (100vh - 3rem)*3/2);
-        padding: 0 1vw;
+        padding: 1em;
         background-color: #61c5c1;
-    }
-
-    #home-flavor-text {
-        justify-content: left;
     }
 }

@@ -65,8 +65,7 @@ export default class Home extends Component {
         <Tile key={i} pic={p.pics[0]} index={i}
           remove={this.state.remove.filter(id => id === p.match.$oid)} />
       ))}
-      <div className={'home-tile back' + this.state.remove.length}
-        id='refresh-button'>
+      <div className={'home-tile back' + this.state.remove.length}>
         <img id='refresh' onClick={this.shuffle} alt='refresh'
           src={this.state.remove.length === 2 ? confirm : more}/>
       </div>
@@ -84,7 +83,7 @@ export default class Home extends Component {
   }
 
   render = () => (
-    <Fullpage>
+    <Fullpage backgroundColor='#343534'>
       {this.state.loading ? (<div id='loading' />) : null}
       <Head />
       <Switch>
