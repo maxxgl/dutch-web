@@ -67,14 +67,27 @@ export default class Signup extends Component {
         gender={this.state.gender} seeking={this.state.seeking} />,
       <Age change={this.onChange} />,
       <Schedule change={this.setTime} schedule={this.state.schedule} />,
-      <Submit info={this.state} consume={this.consume} />
+      <Submit info={this.state} consume={this.consume} />,
+    ]
+
+    const pageMsgs = [
+      "Password and email must be longer than 5 characters.",
+      "At least on picture is needed.",
+      "We need to know your location.",
+      "There must be at least 3 likes",
+      "There must be at least 3 dislikes",
+      "",
+      "Please pick your own gender, and at least one you're seeking.",
+      "Plase select your own age, and valid age range.",
+      "",
+      "Please press 'Create Account'",
     ]
 
     let valid = new Array(pages.length).fill()
     valid.forEach((val, i) => valid[i] = {})
 
     let i = 0
-    valid[i].email = this.state.email.length > 2
+    valid[i].email = this.state.email.length > 5
     valid[i].password = this.state.password.length > 5
 
     valid[++i].pictures = this.state.pictures.length > 0
@@ -83,7 +96,8 @@ export default class Signup extends Component {
     valid[i].longitude = this.state.longitude !== ''
 
     valid[++i].likes = this.state.likes.length > 2
-    valid[i].likes = this.state.dislikes.length > 2
+    valid[++i].likes = this.state.dislikes.length > 2
+    i++ // skip the money page
 
     valid[++i].gender = this.state.gender !== ''
     valid[i].seeking = this.state.seeking !== ''
@@ -91,6 +105,7 @@ export default class Signup extends Component {
     valid[++i].age = this.state.age > 17
     valid[i].youngest = this.state.youngest > 17
     valid[i].oldest = this.state.oldest >= this.state.youngest
+    i++ // skip calendar
 
     valid[++i].end = false
     const validPos = validatePos(valid)
@@ -121,7 +136,8 @@ export default class Signup extends Component {
         <div className='signup-next'>
           {this.state.pos < validPos ? <img src={next} alt='next' id='next'
             onClick={() => this.slide(this.state.pos + 1)} /> :
-            <img src={nonext} alt='next' id='next'/>}
+            <img src={nonext} alt='next' id='next'
+            onClick={() => alert(pageMsgs[this.state.pos])}/>}
         </div>
       </Fullpage>
     )
