@@ -5,3 +5,14 @@
     max-width: 25em;
     text-align: center;
 }
+
+#login-msg {
+    position: fixed;
+    bottom: 2em;
+    left: 25%;
+    width: 50%;
+    padding: .5em;
+    color: red;
+    border: double red 4px;
+    border-radius: 100px;
+}

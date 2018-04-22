@@ -9,7 +9,7 @@ import Button from '../components/Button'
 export default class Login extends Component {
   constructor(props) {
     super(props)
-    this.state = { email: '', password: ''}
+    this.state = { email: '', password: '', message: '' }
   }
 
   onChange = (e) => this.setState({[e.target.name]: e.target.value})
@@ -25,7 +25,7 @@ export default class Login extends Component {
           this.setState({ email: '', password: '' })
           window.location.reload()
         } else {
-          this.setState({ password: '' })
+          this.setState({ message: "Invalid Credentials" })
         }
       })
   }
@@ -41,6 +41,8 @@ export default class Login extends Component {
             placeholder='Password' value={this.state.password} />
           <Button primary click={this.consume}>Login</Button>
         </form>
+        {this.state.message === '' ? null :
+          <div id='login-msg'>{this.state.message}</div>}
       </Fullpage>
     )
   }
