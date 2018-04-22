@@ -108,7 +108,7 @@ export const Location = (props) => (
         <img src={findLocation} alt='location' className='location'/>
         <span>Find My Location</span>
       </div>
-      <img id='map' src={'https://maps.googleapis.com/maps/api/staticmap?zoom=10&size=640x480&maptype=roadmap&markers=color:blue%7C' + props.latitude + ',' + props.longitude} alt='map'/>
+      <img id='map' src={'https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyDORhllXxue6Wm1wFjxZZhTqxT-uolaE6M&zoom=10&size=640x480&maptype=roadmap&markers=color:blue%7C' + props.latitude + ',' + props.longitude} alt='map'/>
       <div className='range-wrapper'>
         <span className='label'>0</span>
         <input type='range' onChange={props.change} name='range'
