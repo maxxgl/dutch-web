@@ -55,14 +55,19 @@ const DateEntry = (props) => (
       <div>Location: {props.data.location.name}</div>
       <div>Dutch: {props.data.dutch}</div>
       <div>Rating: {props.data.rating}</div>
-      <div>User A Checked In: {props.data.userACheckedIn.toString()}</div>
-      <div>User B Checked In: {props.data.userBCheckedIn.toString()}</div>
-      <Button primary click={() => checkin(props._id.$oid)}>
-        Check-In
-      </Button>
+      {checkinYet(props.data.time) === true ?
+        <div>
+          <div>User A Checked In: {props.data.userACheckedIn.toString()}</div>
+          <div>User B Checked In: {props.data.userBCheckedIn.toString()}</div>
+          <Button primary click={() => checkin(props._id.$oid)}>
+            Check-In
+          </Button>
+        </div> : null}
     </div>
   </div>
 )
+
+const checkinYet = (t) => (new Date(t) - new Date()) / 3600000 < 24
 
 const datetime = (t) => {
   const date = new Date(t)
