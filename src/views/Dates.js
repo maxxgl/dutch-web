@@ -52,7 +52,12 @@ const DateEntry = (props) => (
           <img key={index} src={pic} className='date-pics' alt='date option' />
         ))}
       </div>
-      <div>Location: {props.data.location.name}</div>
+      <div>Location:&nbsp;
+        <a href={'https://www.google.com/maps/place/?q=place_id:' +
+          props.data.location.place_id} target='_blank' className='place-id'>
+          {props.data.location.name}
+        </a>
+      </div>
       <div>Dutch: {props.data.dutch}</div>
       <div>Rating: {props.data.rating}</div>
       {checkinYet(props.data.time) === true ?
