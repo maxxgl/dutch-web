@@ -59,15 +59,15 @@ const DateEntry = (props) => (
         </a>
       </div>
       <div>Dutch: {props.data.dutch}</div>
-      <div>Rating: {props.data.rating}</div>
       {checkinYet(props.data.time) === true ?
-        <div>
+        <span>
+          <div>Rating: {props.data.rating}</div>
           <div>User A Checked In: {props.data.userACheckedIn.toString()}</div>
           <div>User B Checked In: {props.data.userBCheckedIn.toString()}</div>
           <Button primary click={() => checkin(props._id.$oid)}>
             Check-In
           </Button>
-        </div> : null}
+        </span> : null}
     </div>
   </div>
 )
