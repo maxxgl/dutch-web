@@ -4,16 +4,16 @@
   "private": true,
   "homepage": "http://maxxgl.com/dutch-web/",
   "dependencies": {
-    "gh-pages": "^1.0.0",
-    "react": "^16.0.0",
-    "react-cropper": "^1.0.1",
-    "react-dom": "^16.0.0",
-    "react-dropzone": "^4.2.3",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "^1.0.14",
+    "gh-pages": "^1.2.0",
+    "react": "^16.8.6",
+    "react-cropper": "^1.2.0",
+    "react-dom": "^16.8.6",
+    "react-dropzone": "^4.3.0",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "^3.0.1",
     "react-swipe": "^5.1.1",
-    "superagent": "^3.8.1",
-    "swipe-js-iso": "^2.0.4"
+    "superagent": "^3.8.3",
+    "swipe-js-iso": "^2.1.5"
   },
   "scripts": {
     "predeploy": "npm run build",
