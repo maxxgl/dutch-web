@@ -10,7 +10,7 @@
     "react-dom": "^16.8.6",
     "react-dropzone": "^4.3.0",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "^3.0.1",
+    "react-scripts": "^5.0.1",
     "react-swipe": "^5.1.1",
     "superagent": "^3.8.3",
     "swipe-js-iso": "^2.1.5"
